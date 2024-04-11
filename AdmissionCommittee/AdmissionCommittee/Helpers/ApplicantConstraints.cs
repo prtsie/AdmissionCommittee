@@ -10,7 +10,7 @@ namespace AdmissionCommittee.Helpers
     internal static class ApplicantConstraints
     {
         public const int MaxLength = 50;
-        public const int MinYear = 18;
-        public const int MaxYear = 21;
+        public const int MinAge = 18;
+        public const int MaxAge = 21;
     }
 }
