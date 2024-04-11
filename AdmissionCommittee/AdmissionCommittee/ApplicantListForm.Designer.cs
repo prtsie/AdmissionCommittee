@@ -30,12 +30,12 @@
         {
             var resources = new System.ComponentModel.ComponentResourceManager(typeof(ApplicantListForm));
             statusStrip = new StatusStrip();
-            toolStrip = new ToolStrip();
-            deleteButton = new ToolStripButton();
-            editButton = new ToolStripButton();
-            toolStripButton2 = new ToolStripButton();
             ApplicantsCountLabel = new ToolStripStatusLabel();
             applicantsCount = new ToolStripStatusLabel();
+            toolStrip = new ToolStrip();
+            toolStripButton2 = new ToolStripButton();
+            editButton = new ToolStripButton();
+            deleteButton = new ToolStripButton();
             dataGridView = new DataGridView();
             statusStrip.SuspendLayout();
             toolStrip.SuspendLayout();
@@ -51,42 +51,6 @@
             statusStrip.TabIndex = 0;
             statusStrip.Text = "statusStrip1";
             // 
-            // toolStrip
-            // 
-            toolStrip.Items.AddRange(new ToolStripItem[] { toolStripButton2, editButton, deleteButton });
-            toolStrip.Location = new Point(0, 0);
-            toolStrip.Name = "toolStrip";
-            toolStrip.Size = new Size(800, 25);
-            toolStrip.TabIndex = 1;
-            toolStrip.Text = "toolStrip1";
-            // 
-            // deleteButton
-            // 
-            deleteButton.DisplayStyle = ToolStripItemDisplayStyle.Text;
-            deleteButton.Image = (Image)resources.GetObject("deleteButton.Image");
-            deleteButton.ImageTransparentColor = Color.Magenta;
-            deleteButton.Name = "deleteButton";
-            deleteButton.Size = new Size(55, 22);
-            deleteButton.Text = "Удалить";
-            // 
-            // editButton
-            // 
-            editButton.DisplayStyle = ToolStripItemDisplayStyle.Text;
-            editButton.Image = (Image)resources.GetObject("editButton.Image");
-            editButton.ImageTransparentColor = Color.Magenta;
-            editButton.Name = "editButton";
-            editButton.Size = new Size(65, 22);
-            editButton.Text = "Изменить";
-            // 
-            // toolStripButton2
-            // 
-            toolStripButton2.DisplayStyle = ToolStripItemDisplayStyle.Text;
-            toolStripButton2.Image = (Image)resources.GetObject("toolStripButton2.Image");
-            toolStripButton2.ImageTransparentColor = Color.Magenta;
-            toolStripButton2.Name = "toolStripButton2";
-            toolStripButton2.Size = new Size(63, 22);
-            toolStripButton2.Text = "Добавить";
-            // 
             // ApplicantsCountLabel
             // 
             ApplicantsCountLabel.Name = "ApplicantsCountLabel";
@@ -99,12 +63,51 @@
             applicantsCount.Size = new Size(13, 17);
             applicantsCount.Text = "0";
             // 
+            // toolStrip
+            // 
+            toolStrip.Items.AddRange(new ToolStripItem[] { toolStripButton2, editButton, deleteButton });
+            toolStrip.Location = new Point(0, 0);
+            toolStrip.Name = "toolStrip";
+            toolStrip.Size = new Size(800, 25);
+            toolStrip.TabIndex = 1;
+            toolStrip.Text = "toolStrip1";
+            // 
+            // toolStripButton2
+            // 
+            toolStripButton2.DisplayStyle = ToolStripItemDisplayStyle.Text;
+            toolStripButton2.Image = (Image)resources.GetObject("toolStripButton2.Image");
+            toolStripButton2.ImageTransparentColor = Color.Magenta;
+            toolStripButton2.Name = "toolStripButton2";
+            toolStripButton2.Size = new Size(63, 22);
+            toolStripButton2.Text = "Добавить";
+            // 
+            // editButton
+            // 
+            editButton.DisplayStyle = ToolStripItemDisplayStyle.Text;
+            editButton.Image = (Image)resources.GetObject("editButton.Image");
+            editButton.ImageTransparentColor = Color.Magenta;
+            editButton.Name = "editButton";
+            editButton.Size = new Size(65, 22);
+            editButton.Text = "Изменить";
+            // 
+            // deleteButton
+            // 
+            deleteButton.DisplayStyle = ToolStripItemDisplayStyle.Text;
+            deleteButton.Image = (Image)resources.GetObject("deleteButton.Image");
+            deleteButton.ImageTransparentColor = Color.Magenta;
+            deleteButton.Name = "deleteButton";
+            deleteButton.Size = new Size(55, 22);
+            deleteButton.Text = "Удалить";
+            // 
             // dataGridView
             // 
+            dataGridView.AllowUserToAddRows = false;
+            dataGridView.AllowUserToDeleteRows = false;
             dataGridView.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dataGridView.Dock = DockStyle.Fill;
             dataGridView.Location = new Point(0, 25);
             dataGridView.Name = "dataGridView";
+            dataGridView.ReadOnly = true;
             dataGridView.Size = new Size(800, 403);
             dataGridView.TabIndex = 2;
             // 
