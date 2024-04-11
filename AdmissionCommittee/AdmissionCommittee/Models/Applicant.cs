@@ -13,7 +13,7 @@ namespace AdmissionCommittee.Models
     /// </summary>
     internal sealed class Applicant
     {
-        public Guid Id { get; private set; } = new Guid();
+        public Guid Id { get; private set; } = Guid.NewGuid();
 
         [Required]
         [MaxLength(ApplicantConstraints.MaxLength)]
