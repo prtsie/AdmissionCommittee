@@ -4,6 +4,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using AdmissionCommittee.Helpers;
 
 namespace AdmissionCommittee.Models
 {
@@ -12,17 +13,17 @@ namespace AdmissionCommittee.Models
     /// </summary>
     internal sealed class Applicant
     {
-        private const int MaxFieldLength = 50;
+        public Guid Id { get; private set; } = new Guid();
 
         [Required]
-        [MaxLength(MaxFieldLength)]
+        [MaxLength(ApplicantConstraints.MaxLength)]
         public string Name { get; set; }
 
         [Required]
-        [MaxLength(MaxFieldLength)]
+        [MaxLength(ApplicantConstraints.MaxLength)]
         public string Surname { get; set; }
 
-        [MaxLength(MaxFieldLength)]
+        [MaxLength(ApplicantConstraints.MaxLength)]
         public string? Patronymic { get; set; }
 
         [Required]
@@ -44,7 +45,5 @@ namespace AdmissionCommittee.Models
         public int ITScore { get; set; }
 
         public int TotalScore => MathScore + RussianScore + ITScore;
-
-        public string Initials => $"{Surname} {Name} {Patronymic ?? string.Empty}".Trim();
     }
 }
