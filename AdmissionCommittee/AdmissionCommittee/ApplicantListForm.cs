@@ -6,7 +6,7 @@ namespace AdmissionCommittee
     public partial class ApplicantListForm : Form
     {
         private readonly List<Applicant> data = new();
-        public BindableBool IsSelected { get; private set; } = new();
+        public BindableStruct<bool> IsSelected { get; private set; } = new();
         private Applicant? selected;
         private readonly BindingSource bindingSource;
 
@@ -74,8 +74,10 @@ namespace AdmissionCommittee
             var result = editForm.ShowDialog();
             if (result == DialogResult.OK)
             {
-                bindingSource.Add(editForm.Applicant);
-                bindingSource.Remove(selected);
+                var index = bindingSource.IndexOf(selected);
+                bindingSource.RemoveAt(index);
+                bindingSource.Insert(index, editForm.Applicant);
+                dataGridView.ClearSelection();
             }
         }
 

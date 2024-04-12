@@ -8,16 +8,17 @@ using System.Threading.Tasks;
 
 namespace AdmissionCommittee.Helpers
 {
-    public sealed class BindableBool : INotifyPropertyChanged
+    public sealed class BindableStruct<T> : INotifyPropertyChanged
+        where T : struct
     {
-        private bool value;
+        private T value;
 
-        public bool Value
+        public T Value
         {
             get => value;
             set
             {
-                if (value != this.value)
+                if (!value.Equals(this.value))
                 {
                     this.value = value;
                     OnPropertyChanged();
