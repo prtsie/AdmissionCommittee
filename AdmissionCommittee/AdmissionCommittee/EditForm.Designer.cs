@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            components = new System.ComponentModel.Container();
             groupBox1 = new GroupBox();
             groupBox2 = new GroupBox();
             mathScoreNumericUpDown = new NumericUpDown();
@@ -50,11 +51,13 @@
             nameTextBox = new TextBox();
             cancelButton = new Button();
             saveButton = new Button();
+            errorProvider = new ErrorProvider(components);
             groupBox1.SuspendLayout();
             groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)mathScoreNumericUpDown).BeginInit();
             ((System.ComponentModel.ISupportInitialize)russianScoreNumericUpDown).BeginInit();
             ((System.ComponentModel.ISupportInitialize)ITScoreNumericUpDown).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)errorProvider).BeginInit();
             SuspendLayout();
             // 
             // groupBox1
@@ -269,6 +272,10 @@
             saveButton.Text = "Сохранить";
             saveButton.UseVisualStyleBackColor = true;
             // 
+            // errorProvider
+            // 
+            errorProvider.ContainerControl = this;
+            // 
             // EditForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -287,6 +294,7 @@
             ((System.ComponentModel.ISupportInitialize)mathScoreNumericUpDown).EndInit();
             ((System.ComponentModel.ISupportInitialize)russianScoreNumericUpDown).EndInit();
             ((System.ComponentModel.ISupportInitialize)ITScoreNumericUpDown).EndInit();
+            ((System.ComponentModel.ISupportInitialize)errorProvider).EndInit();
             ResumeLayout(false);
         }
 
@@ -314,5 +322,6 @@
         private GroupBox groupBox2;
         private Button cancelButton;
         private Button saveButton;
+        private ErrorProvider errorProvider;
     }
 }
