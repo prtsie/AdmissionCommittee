@@ -19,8 +19,8 @@ namespace AdmissionCommittee
                 DataSource = data
             };
             dataGridView.DataSource = bindingSource;
-            editButton.DataBindings.Add(new Binding(nameof(Button.Enabled), IsSelected, nameof(IsSelected.Value)) { ControlUpdateMode = ControlUpdateMode.OnPropertyChanged });
-            deleteButton.DataBindings.Add(new Binding(nameof(Button.Enabled), IsSelected, nameof(IsSelected.Value)) { ControlUpdateMode = ControlUpdateMode.OnPropertyChanged });
+            editButton.AddBindings(target => target.Enabled, IsSelected, source => source.Value);
+            deleteButton.AddBindings(target => target.Enabled, IsSelected, source => source.Value);
         }
 
         private void GenerateData(int count)
