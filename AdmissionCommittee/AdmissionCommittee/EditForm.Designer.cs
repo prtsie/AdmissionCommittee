@@ -163,7 +163,6 @@
             label2.TabIndex = 10;
             label2.Text = "Фамилия";
             label2.TextAlign = ContentAlignment.MiddleRight;
-            label2.Click += this.label2_Click;
             // 
             // label3
             // 
@@ -269,7 +268,6 @@
             saveButton.TabIndex = 2;
             saveButton.Text = "Сохранить";
             saveButton.UseVisualStyleBackColor = true;
-            saveButton.Click += this.button2_Click;
             // 
             // EditForm
             // 
