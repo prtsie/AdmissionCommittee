@@ -16,7 +16,7 @@ namespace AdmissionCommittee.Helpers
             TSource source,
             Expression<Func<TSource, object>> sourceMember,
             ErrorProvider? errorProvider = null)
-            where TBindable : BindableComponent
+            where TBindable : IBindableComponent
             where TSource : class
         {
             var sourceMemberName = GetMemberName(sourceMember);
