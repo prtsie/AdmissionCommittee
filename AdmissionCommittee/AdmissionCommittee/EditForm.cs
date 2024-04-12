@@ -20,14 +20,14 @@ namespace AdmissionCommittee
             {
                 Applicant = (Applicant)applicant.Clone();
             }
-            formOfEducationComboBox.DataSource = Enum.GetValues(typeof(FormOfEducation));
-            genderComboBox.DataSource = Enum.GetValues(typeof(Gender));
+            formOfEducationComboBox.Items.AddRange(Enum.GetValues<FormOfEducation>().Cast<object>().ToArray());
+            genderComboBox.Items.AddRange(Enum.GetValues<Gender>().Cast<object>().ToArray());
+            formOfEducationComboBox.AddBindings(comboBox => comboBox.SelectedItem, Applicant, applicant => applicant.FormOfEducation);
+            genderComboBox.AddBindings(comboBox => comboBox.SelectedItem, Applicant, applicant => applicant.Gender);
             nameTextBox.AddBindings(textBox => textBox.Text, Applicant, Applicant => Applicant.Name);
             surnameTextBox.AddBindings(textBox => textBox.Text, Applicant, Applicant => Applicant.Surname);
-            patronymicTextBox.AddBindings(textBox => textBox.Text, Applicant, Applicant => Applicant.Patronymic!);
+            patronymicTextBox.AddBindings(textBox => textBox.Text, Applicant, Applicant => Applicant.Patronymic);
             birthDateTimePicker.AddBindings(datePicker => datePicker.Value, Applicant, Applicant => Applicant.BirthDay);
-            //formOfEducationComboBox.AddBindings(comboBox => comboBox.SelectedValue, Applicant!, Applicant => Applicant.FormOfEducation);
-            //genderComboBox.AddBindings(comboBox => comboBox.SelectedValue, Applicant!, Applicant => Applicant.Gender);
             mathScoreNumericUpDown.AddBindings(numericUpDown => numericUpDown.Value, Applicant, Applicant => Applicant.MathScore);
             russianScoreNumericUpDown.AddBindings(numericUpDown => numericUpDown.Value, Applicant, Applicant => Applicant.RussianScore);
             ITScoreNumericUpDown.AddBindings(numericUpDown => numericUpDown.Value, Applicant, clone => clone.ITScore);
