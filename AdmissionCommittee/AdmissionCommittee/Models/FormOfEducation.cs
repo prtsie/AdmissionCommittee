@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace AdmissionCommittee.Models
 {
     /// <summary>Формы обучения для <see cref="Applicant"/></summary>
-    internal enum FormOfEducation
+    public enum FormOfEducation
     {
         /// <summary>Очная форма обучения</summary>
         Intramural,

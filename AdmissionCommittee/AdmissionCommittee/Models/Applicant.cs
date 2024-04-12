@@ -11,7 +11,7 @@ namespace AdmissionCommittee.Models
     /// <summary>
     /// Класс абитуриента
     /// </summary>
-    internal sealed class Applicant : ICloneable
+    public sealed class Applicant : ICloneable
     {
         public Guid Id { get; private set; } = Guid.NewGuid();
 
