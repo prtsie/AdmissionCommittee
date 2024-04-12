@@ -98,6 +98,7 @@
             deleteButton.Name = "deleteButton";
             deleteButton.Size = new Size(55, 22);
             deleteButton.Text = "Удалить";
+            deleteButton.Click += deleteButton_Click;
             // 
             // dataGridView
             // 
@@ -106,10 +107,13 @@
             dataGridView.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dataGridView.Dock = DockStyle.Fill;
             dataGridView.Location = new Point(0, 25);
+            dataGridView.MultiSelect = false;
             dataGridView.Name = "dataGridView";
             dataGridView.ReadOnly = true;
+            dataGridView.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dataGridView.Size = new Size(800, 403);
             dataGridView.TabIndex = 2;
+            dataGridView.SelectionChanged += dataGridView_SelectionChanged;
             // 
             // ApplicantListForm
             // 

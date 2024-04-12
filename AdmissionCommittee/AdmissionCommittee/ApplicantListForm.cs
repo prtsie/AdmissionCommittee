@@ -5,15 +5,22 @@ namespace AdmissionCommittee
 {
     public partial class ApplicantListForm : Form
     {
-        private List<Applicant> data = new();
+        private readonly List<Applicant> data = new();
+        public BindableBool IsSelected { get; private set; } = new();
+        private Applicant? selected;
+        private readonly BindingSource bindingSource;
 
         public ApplicantListForm()
         {
             InitializeComponent();
             GenerateData(30);
-            var bindingSource = new BindingSource();
-            bindingSource.DataSource = data;
+            bindingSource = new BindingSource
+            {
+                DataSource = data
+            };
             dataGridView.DataSource = bindingSource;
+            editButton.DataBindings.Add(new Binding(nameof(Button.Enabled), IsSelected, nameof(IsSelected.Value)) { ControlUpdateMode = ControlUpdateMode.OnPropertyChanged });
+            deleteButton.DataBindings.Add(new Binding(nameof(Button.Enabled), IsSelected, nameof(IsSelected.Value)) { ControlUpdateMode = ControlUpdateMode.OnPropertyChanged });
         }
 
         private void GenerateData(int count)
@@ -43,6 +50,21 @@ namespace AdmissionCommittee
                     MathScore = random.Next(101),
                 };
                 data.Add(applicant);
+            }
+        }
+
+        private void dataGridView_SelectionChanged(object _, EventArgs __)
+        {
+            selected = dataGridView.SelectedRows.Count != 0 ? dataGridView.SelectedRows[0].DataBoundItem as Applicant : null;
+            IsSelected.Value = selected != null;
+        }
+
+        private void deleteButton_Click(object _, EventArgs __)
+        {
+            var result = MessageBox.Show("Точно удалить?", "Удаление", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
+            if (result == DialogResult.OK)
+            {
+                bindingSource.Remove(selected);
             }
         }
     }
