@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace AdmissionCommittee.Models
 {
     /// <summary>Пол для <see cref="Applicant"/></summary>
-    internal enum Gender
+    public enum Gender
     {
         Unknown,
         Male,
