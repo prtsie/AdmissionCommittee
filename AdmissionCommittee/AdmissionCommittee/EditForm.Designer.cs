@@ -29,32 +29,32 @@
         private void InitializeComponent()
         {
             groupBox1 = new GroupBox();
-            nameTextBox = new TextBox();
-            surnameTextBox = new TextBox();
-            patronymicTextBox = new TextBox();
-            birthDateTimePicker = new DateTimePicker();
-            formOfEducationComboBox = new ComboBox();
-            genderComboBox = new ComboBox();
-            russianNumericUpDown = new NumericUpDown();
-            mathScoreNumericUpDown = new NumericUpDown();
-            ITScoreNumericUpDown = new NumericUpDown();
-            label1 = new Label();
-            label2 = new Label();
-            label3 = new Label();
-            label4 = new Label();
-            label5 = new Label();
-            label6 = new Label();
-            label7 = new Label();
-            label8 = new Label();
-            label9 = new Label();
             groupBox2 = new GroupBox();
+            mathScoreNumericUpDown = new NumericUpDown();
+            label9 = new Label();
+            russianScoreNumericUpDown = new NumericUpDown();
+            label8 = new Label();
+            ITScoreNumericUpDown = new NumericUpDown();
+            label7 = new Label();
+            label6 = new Label();
+            label5 = new Label();
+            label4 = new Label();
+            label3 = new Label();
+            label2 = new Label();
+            label1 = new Label();
+            genderComboBox = new ComboBox();
+            formOfEducationComboBox = new ComboBox();
+            birthDateTimePicker = new DateTimePicker();
+            patronymicTextBox = new TextBox();
+            surnameTextBox = new TextBox();
+            nameTextBox = new TextBox();
             cancelButton = new Button();
             saveButton = new Button();
             groupBox1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)russianNumericUpDown).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)mathScoreNumericUpDown).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)ITScoreNumericUpDown).BeginInit();
             groupBox2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)mathScoreNumericUpDown).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)russianScoreNumericUpDown).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)ITScoreNumericUpDown).BeginInit();
             SuspendLayout();
             // 
             // groupBox1
@@ -79,56 +79,20 @@
             groupBox1.TabStop = false;
             groupBox1.Text = "Абитуриент";
             // 
-            // nameTextBox
+            // groupBox2
             // 
-            nameTextBox.Location = new Point(140, 22);
-            nameTextBox.Name = "nameTextBox";
-            nameTextBox.Size = new Size(148, 23);
-            nameTextBox.TabIndex = 0;
-            // 
-            // surnameTextBox
-            // 
-            surnameTextBox.Location = new Point(140, 51);
-            surnameTextBox.Name = "surnameTextBox";
-            surnameTextBox.Size = new Size(148, 23);
-            surnameTextBox.TabIndex = 1;
-            // 
-            // patronymicTextBox
-            // 
-            patronymicTextBox.Location = new Point(140, 80);
-            patronymicTextBox.Name = "patronymicTextBox";
-            patronymicTextBox.Size = new Size(148, 23);
-            patronymicTextBox.TabIndex = 2;
-            // 
-            // birthDateTimePicker
-            // 
-            birthDateTimePicker.Location = new Point(140, 109);
-            birthDateTimePicker.Name = "birthDateTimePicker";
-            birthDateTimePicker.Size = new Size(148, 23);
-            birthDateTimePicker.TabIndex = 3;
-            // 
-            // formOfEducationComboBox
-            // 
-            formOfEducationComboBox.FormattingEnabled = true;
-            formOfEducationComboBox.Location = new Point(140, 138);
-            formOfEducationComboBox.Name = "formOfEducationComboBox";
-            formOfEducationComboBox.Size = new Size(148, 23);
-            formOfEducationComboBox.TabIndex = 4;
-            // 
-            // genderComboBox
-            // 
-            genderComboBox.FormattingEnabled = true;
-            genderComboBox.Location = new Point(140, 167);
-            genderComboBox.Name = "genderComboBox";
-            genderComboBox.Size = new Size(148, 23);
-            genderComboBox.TabIndex = 5;
-            // 
-            // russianNumericUpDown
-            // 
-            russianNumericUpDown.Location = new Point(96, 31);
-            russianNumericUpDown.Name = "russianNumericUpDown";
-            russianNumericUpDown.Size = new Size(148, 23);
-            russianNumericUpDown.TabIndex = 6;
+            groupBox2.Controls.Add(mathScoreNumericUpDown);
+            groupBox2.Controls.Add(label9);
+            groupBox2.Controls.Add(russianScoreNumericUpDown);
+            groupBox2.Controls.Add(label8);
+            groupBox2.Controls.Add(ITScoreNumericUpDown);
+            groupBox2.Controls.Add(label7);
+            groupBox2.Location = new Point(44, 196);
+            groupBox2.Name = "groupBox2";
+            groupBox2.Size = new Size(253, 124);
+            groupBox2.TabIndex = 18;
+            groupBox2.TabStop = false;
+            groupBox2.Text = "Баллы ЕГЭ";
             // 
             // mathScoreNumericUpDown
             // 
@@ -136,93 +100,6 @@
             mathScoreNumericUpDown.Name = "mathScoreNumericUpDown";
             mathScoreNumericUpDown.Size = new Size(147, 23);
             mathScoreNumericUpDown.TabIndex = 7;
-            // 
-            // ITScoreNumericUpDown
-            // 
-            ITScoreNumericUpDown.Location = new Point(96, 89);
-            ITScoreNumericUpDown.Name = "ITScoreNumericUpDown";
-            ITScoreNumericUpDown.Size = new Size(147, 23);
-            ITScoreNumericUpDown.TabIndex = 8;
-            // 
-            // label1
-            // 
-            label1.AutoSize = true;
-            label1.Location = new Point(103, 25);
-            label1.Name = "label1";
-            label1.Size = new Size(31, 15);
-            label1.TabIndex = 9;
-            label1.Text = "Имя";
-            label1.TextAlign = ContentAlignment.MiddleRight;
-            // 
-            // label2
-            // 
-            label2.AutoSize = true;
-            label2.Location = new Point(76, 54);
-            label2.Name = "label2";
-            label2.Size = new Size(58, 15);
-            label2.TabIndex = 10;
-            label2.Text = "Фамилия";
-            label2.TextAlign = ContentAlignment.MiddleRight;
-            // 
-            // label3
-            // 
-            label3.AutoSize = true;
-            label3.Location = new Point(13, 83);
-            label3.Name = "label3";
-            label3.Size = new Size(121, 15);
-            label3.TabIndex = 11;
-            label3.Text = "Отчество (если есть)";
-            label3.TextAlign = ContentAlignment.MiddleRight;
-            // 
-            // label4
-            // 
-            label4.AutoSize = true;
-            label4.Location = new Point(44, 115);
-            label4.Name = "label4";
-            label4.Size = new Size(90, 15);
-            label4.TabIndex = 12;
-            label4.Text = "Дата рождения";
-            label4.TextAlign = ContentAlignment.MiddleRight;
-            // 
-            // label5
-            // 
-            label5.AutoSize = true;
-            label5.Location = new Point(33, 141);
-            label5.Name = "label5";
-            label5.Size = new Size(101, 15);
-            label5.TabIndex = 13;
-            label5.Text = "Форма обучения";
-            label5.TextAlign = ContentAlignment.MiddleRight;
-            // 
-            // label6
-            // 
-            label6.AutoSize = true;
-            label6.Location = new Point(104, 170);
-            label6.Name = "label6";
-            label6.Size = new Size(30, 15);
-            label6.TabIndex = 14;
-            label6.Text = "Пол";
-            label6.TextAlign = ContentAlignment.MiddleRight;
-            // 
-            // label7
-            // 
-            label7.AutoSize = true;
-            label7.Location = new Point(9, 33);
-            label7.Name = "label7";
-            label7.Size = new Size(81, 15);
-            label7.TabIndex = 15;
-            label7.Text = "Русский язык";
-            label7.TextAlign = ContentAlignment.MiddleRight;
-            // 
-            // label8
-            // 
-            label8.AutoSize = true;
-            label8.Location = new Point(16, 62);
-            label8.Name = "label8";
-            label8.Size = new Size(74, 15);
-            label8.TabIndex = 16;
-            label8.Text = "Математика";
-            label8.TextAlign = ContentAlignment.MiddleRight;
             // 
             // label9
             // 
@@ -234,20 +111,143 @@
             label9.Text = "Информатика";
             label9.TextAlign = ContentAlignment.MiddleRight;
             // 
-            // groupBox2
+            // russianScoreNumericUpDown
             // 
-            groupBox2.Controls.Add(mathScoreNumericUpDown);
-            groupBox2.Controls.Add(label9);
-            groupBox2.Controls.Add(russianNumericUpDown);
-            groupBox2.Controls.Add(label8);
-            groupBox2.Controls.Add(ITScoreNumericUpDown);
-            groupBox2.Controls.Add(label7);
-            groupBox2.Location = new Point(44, 196);
-            groupBox2.Name = "groupBox2";
-            groupBox2.Size = new Size(253, 124);
-            groupBox2.TabIndex = 18;
-            groupBox2.TabStop = false;
-            groupBox2.Text = "Баллы ЕГЭ";
+            russianScoreNumericUpDown.Location = new Point(96, 31);
+            russianScoreNumericUpDown.Name = "russianScoreNumericUpDown";
+            russianScoreNumericUpDown.Size = new Size(148, 23);
+            russianScoreNumericUpDown.TabIndex = 6;
+            // 
+            // label8
+            // 
+            label8.AutoSize = true;
+            label8.Location = new Point(16, 62);
+            label8.Name = "label8";
+            label8.Size = new Size(74, 15);
+            label8.TabIndex = 16;
+            label8.Text = "Математика";
+            label8.TextAlign = ContentAlignment.MiddleRight;
+            // 
+            // ITScoreNumericUpDown
+            // 
+            ITScoreNumericUpDown.Location = new Point(96, 89);
+            ITScoreNumericUpDown.Name = "ITScoreNumericUpDown";
+            ITScoreNumericUpDown.Size = new Size(147, 23);
+            ITScoreNumericUpDown.TabIndex = 8;
+            // 
+            // label7
+            // 
+            label7.AutoSize = true;
+            label7.Location = new Point(9, 33);
+            label7.Name = "label7";
+            label7.Size = new Size(81, 15);
+            label7.TabIndex = 15;
+            label7.Text = "Русский язык";
+            label7.TextAlign = ContentAlignment.MiddleRight;
+            // 
+            // label6
+            // 
+            label6.AutoSize = true;
+            label6.Location = new Point(104, 170);
+            label6.Name = "label6";
+            label6.Size = new Size(30, 15);
+            label6.TabIndex = 14;
+            label6.Text = "Пол";
+            label6.TextAlign = ContentAlignment.MiddleRight;
+            // 
+            // label5
+            // 
+            label5.AutoSize = true;
+            label5.Location = new Point(33, 141);
+            label5.Name = "label5";
+            label5.Size = new Size(101, 15);
+            label5.TabIndex = 13;
+            label5.Text = "Форма обучения";
+            label5.TextAlign = ContentAlignment.MiddleRight;
+            // 
+            // label4
+            // 
+            label4.AutoSize = true;
+            label4.Location = new Point(44, 115);
+            label4.Name = "label4";
+            label4.Size = new Size(90, 15);
+            label4.TabIndex = 12;
+            label4.Text = "Дата рождения";
+            label4.TextAlign = ContentAlignment.MiddleRight;
+            // 
+            // label3
+            // 
+            label3.AutoSize = true;
+            label3.Location = new Point(13, 83);
+            label3.Name = "label3";
+            label3.Size = new Size(121, 15);
+            label3.TabIndex = 11;
+            label3.Text = "Отчество (если есть)";
+            label3.TextAlign = ContentAlignment.MiddleRight;
+            // 
+            // label2
+            // 
+            label2.AutoSize = true;
+            label2.Location = new Point(76, 54);
+            label2.Name = "label2";
+            label2.Size = new Size(58, 15);
+            label2.TabIndex = 10;
+            label2.Text = "Фамилия";
+            label2.TextAlign = ContentAlignment.MiddleRight;
+            // 
+            // label1
+            // 
+            label1.AutoSize = true;
+            label1.Location = new Point(103, 25);
+            label1.Name = "label1";
+            label1.Size = new Size(31, 15);
+            label1.TabIndex = 9;
+            label1.Text = "Имя";
+            label1.TextAlign = ContentAlignment.MiddleRight;
+            // 
+            // genderComboBox
+            // 
+            genderComboBox.FormattingEnabled = true;
+            genderComboBox.Location = new Point(140, 167);
+            genderComboBox.Name = "genderComboBox";
+            genderComboBox.Size = new Size(148, 23);
+            genderComboBox.TabIndex = 5;
+            // 
+            // formOfEducationComboBox
+            // 
+            formOfEducationComboBox.FormattingEnabled = true;
+            formOfEducationComboBox.Location = new Point(140, 138);
+            formOfEducationComboBox.Name = "formOfEducationComboBox";
+            formOfEducationComboBox.Size = new Size(148, 23);
+            formOfEducationComboBox.TabIndex = 4;
+            // 
+            // birthDateTimePicker
+            // 
+            birthDateTimePicker.Location = new Point(140, 109);
+            birthDateTimePicker.Name = "birthDateTimePicker";
+            birthDateTimePicker.Size = new Size(148, 23);
+            birthDateTimePicker.TabIndex = 3;
+            // 
+            // patronymicTextBox
+            // 
+            patronymicTextBox.Location = new Point(140, 80);
+            patronymicTextBox.Name = "patronymicTextBox";
+            patronymicTextBox.Size = new Size(148, 23);
+            patronymicTextBox.TabIndex = 2;
+            // 
+            // surnameTextBox
+            // 
+            surnameTextBox.Location = new Point(140, 51);
+            surnameTextBox.Name = "surnameTextBox";
+            surnameTextBox.Size = new Size(148, 23);
+            surnameTextBox.TabIndex = 1;
+            // 
+            // nameTextBox
+            // 
+            nameTextBox.Location = new Point(140, 22);
+            nameTextBox.Name = "nameTextBox";
+            nameTextBox.Size = new Size(148, 23);
+            nameTextBox.TabIndex = 0;
             // 
             // cancelButton
             // 
@@ -282,11 +282,11 @@
             Text = "Редактирование";
             groupBox1.ResumeLayout(false);
             groupBox1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)russianNumericUpDown).EndInit();
-            ((System.ComponentModel.ISupportInitialize)mathScoreNumericUpDown).EndInit();
-            ((System.ComponentModel.ISupportInitialize)ITScoreNumericUpDown).EndInit();
             groupBox2.ResumeLayout(false);
             groupBox2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)mathScoreNumericUpDown).EndInit();
+            ((System.ComponentModel.ISupportInitialize)russianScoreNumericUpDown).EndInit();
+            ((System.ComponentModel.ISupportInitialize)ITScoreNumericUpDown).EndInit();
             ResumeLayout(false);
         }
 
@@ -304,7 +304,7 @@
         private Label label1;
         private NumericUpDown ITScoreNumericUpDown;
         private NumericUpDown mathScoreNumericUpDown;
-        private NumericUpDown russianNumericUpDown;
+        private NumericUpDown russianScoreNumericUpDown;
         private ComboBox genderComboBox;
         private ComboBox formOfEducationComboBox;
         private DateTimePicker birthDateTimePicker;
