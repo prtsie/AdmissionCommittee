@@ -43,27 +43,25 @@
             label3 = new Label();
             label2 = new Label();
             label1 = new Label();
+            genderComboBox = new ComboBox();
+            formOfEducationComboBox = new ComboBox();
             birthDateTimePicker = new DateTimePicker();
             patronymicTextBox = new TextBox();
             surnameTextBox = new TextBox();
             nameTextBox = new TextBox();
-            containerBindingSource = new BindingSource(components);
             cancelButton = new Button();
             saveButton = new Button();
-            formOfEducationComboBox = new ComboBox();
-            genderComboBox = new ComboBox();
+            errorProvider = new ErrorProvider(components);
             groupBox1.SuspendLayout();
             groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)mathScoreNumericUpDown).BeginInit();
             ((System.ComponentModel.ISupportInitialize)russianScoreNumericUpDown).BeginInit();
             ((System.ComponentModel.ISupportInitialize)ITScoreNumericUpDown).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)containerBindingSource).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)errorProvider).BeginInit();
             SuspendLayout();
             // 
             // groupBox1
             // 
-            groupBox1.Controls.Add(genderComboBox);
-            groupBox1.Controls.Add(formOfEducationComboBox);
             groupBox1.Controls.Add(groupBox2);
             groupBox1.Controls.Add(label6);
             groupBox1.Controls.Add(label5);
@@ -71,6 +69,8 @@
             groupBox1.Controls.Add(label3);
             groupBox1.Controls.Add(label2);
             groupBox1.Controls.Add(label1);
+            groupBox1.Controls.Add(genderComboBox);
+            groupBox1.Controls.Add(formOfEducationComboBox);
             groupBox1.Controls.Add(birthDateTimePicker);
             groupBox1.Controls.Add(patronymicTextBox);
             groupBox1.Controls.Add(surnameTextBox);
@@ -208,6 +208,22 @@
             label1.Text = "Имя";
             label1.TextAlign = ContentAlignment.MiddleRight;
             // 
+            // genderComboBox
+            // 
+            genderComboBox.FormattingEnabled = true;
+            genderComboBox.Location = new Point(140, 167);
+            genderComboBox.Name = "genderComboBox";
+            genderComboBox.Size = new Size(148, 23);
+            genderComboBox.TabIndex = 5;
+            // 
+            // formOfEducationComboBox
+            // 
+            formOfEducationComboBox.FormattingEnabled = true;
+            formOfEducationComboBox.Location = new Point(140, 138);
+            formOfEducationComboBox.Name = "formOfEducationComboBox";
+            formOfEducationComboBox.Size = new Size(148, 23);
+            formOfEducationComboBox.TabIndex = 4;
+            // 
             // birthDateTimePicker
             // 
             birthDateTimePicker.Location = new Point(140, 109);
@@ -236,10 +252,6 @@
             nameTextBox.Size = new Size(148, 23);
             nameTextBox.TabIndex = 0;
             // 
-            // containerBindingSource
-            // 
-            containerBindingSource.DataSource = typeof(System.ComponentModel.Container);
-            // 
             // cancelButton
             // 
             cancelButton.DialogResult = DialogResult.Cancel;
@@ -260,21 +272,9 @@
             saveButton.Text = "Сохранить";
             saveButton.UseVisualStyleBackColor = true;
             // 
-            // formOfEducationComboBox
+            // errorProvider
             // 
-            formOfEducationComboBox.FormattingEnabled = true;
-            formOfEducationComboBox.Location = new Point(140, 138);
-            formOfEducationComboBox.Name = "formOfEducationComboBox";
-            formOfEducationComboBox.Size = new Size(148, 23);
-            formOfEducationComboBox.TabIndex = 19;
-            // 
-            // genderComboBox
-            // 
-            genderComboBox.FormattingEnabled = true;
-            genderComboBox.Location = new Point(140, 167);
-            genderComboBox.Name = "genderComboBox";
-            genderComboBox.Size = new Size(148, 23);
-            genderComboBox.TabIndex = 20;
+            errorProvider.ContainerControl = this;
             // 
             // EditForm
             // 
@@ -294,7 +294,7 @@
             ((System.ComponentModel.ISupportInitialize)mathScoreNumericUpDown).EndInit();
             ((System.ComponentModel.ISupportInitialize)russianScoreNumericUpDown).EndInit();
             ((System.ComponentModel.ISupportInitialize)ITScoreNumericUpDown).EndInit();
-            ((System.ComponentModel.ISupportInitialize)containerBindingSource).EndInit();
+            ((System.ComponentModel.ISupportInitialize)errorProvider).EndInit();
             ResumeLayout(false);
         }
 
@@ -313,6 +313,8 @@
         private NumericUpDown ITScoreNumericUpDown;
         private NumericUpDown mathScoreNumericUpDown;
         private NumericUpDown russianScoreNumericUpDown;
+        private ComboBox genderComboBox;
+        private ComboBox formOfEducationComboBox;
         private DateTimePicker birthDateTimePicker;
         private TextBox patronymicTextBox;
         private TextBox surnameTextBox;
@@ -320,8 +322,6 @@
         private GroupBox groupBox2;
         private Button cancelButton;
         private Button saveButton;
-        private BindingSource containerBindingSource;
-        private ComboBox genderComboBox;
-        private ComboBox formOfEducationComboBox;
+        private ErrorProvider errorProvider;
     }
 }
