@@ -13,7 +13,7 @@ namespace AdmissionCommittee
         public ApplicantListForm()
         {
             InitializeComponent();
-            GenerateData(30);
+            GenerateData(5);
             bindingSource = new BindingSource
             {
                 DataSource = data
@@ -65,6 +65,27 @@ namespace AdmissionCommittee
             if (result == DialogResult.OK)
             {
                 bindingSource.Remove(selected);
+            }
+        }
+
+        private void editButton_Click(object _, EventArgs __)
+        {
+            var editForm = new EditForm(selected);
+            var result = editForm.ShowDialog();
+            if (result == DialogResult.OK)
+            {
+                bindingSource.Add(editForm.Applicant);
+                bindingSource.Remove(selected);
+            }
+        }
+
+        private void AddButton_Click(object _, EventArgs __)
+        {
+            var editForm = new EditForm();
+            var result = editForm.ShowDialog();
+            if (result == DialogResult.OK)
+            {
+                bindingSource.Add(editForm.Applicant);
             }
         }
     }

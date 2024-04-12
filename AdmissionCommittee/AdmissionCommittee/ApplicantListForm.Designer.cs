@@ -33,7 +33,7 @@
             ApplicantsCountLabel = new ToolStripStatusLabel();
             applicantsCount = new ToolStripStatusLabel();
             toolStrip = new ToolStrip();
-            toolStripButton2 = new ToolStripButton();
+            addButton = new ToolStripButton();
             editButton = new ToolStripButton();
             deleteButton = new ToolStripButton();
             dataGridView = new DataGridView();
@@ -65,21 +65,22 @@
             // 
             // toolStrip
             // 
-            toolStrip.Items.AddRange(new ToolStripItem[] { toolStripButton2, editButton, deleteButton });
+            toolStrip.Items.AddRange(new ToolStripItem[] { addButton, editButton, deleteButton });
             toolStrip.Location = new Point(0, 0);
             toolStrip.Name = "toolStrip";
             toolStrip.Size = new Size(800, 25);
             toolStrip.TabIndex = 1;
             toolStrip.Text = "toolStrip1";
             // 
-            // toolStripButton2
+            // addButton
             // 
-            toolStripButton2.DisplayStyle = ToolStripItemDisplayStyle.Text;
-            toolStripButton2.Image = (Image)resources.GetObject("toolStripButton2.Image");
-            toolStripButton2.ImageTransparentColor = Color.Magenta;
-            toolStripButton2.Name = "toolStripButton2";
-            toolStripButton2.Size = new Size(63, 22);
-            toolStripButton2.Text = "Добавить";
+            addButton.DisplayStyle = ToolStripItemDisplayStyle.Text;
+            addButton.Image = (Image)resources.GetObject("addButton.Image");
+            addButton.ImageTransparentColor = Color.Magenta;
+            addButton.Name = "addButton";
+            addButton.Size = new Size(63, 22);
+            addButton.Text = "Добавить";
+            addButton.Click += AddButton_Click;
             // 
             // editButton
             // 
@@ -89,6 +90,7 @@
             editButton.Name = "editButton";
             editButton.Size = new Size(65, 22);
             editButton.Text = "Изменить";
+            editButton.Click += editButton_Click;
             // 
             // deleteButton
             // 
@@ -139,7 +141,7 @@
         private StatusStrip statusStrip;
         private ToolStrip toolStrip;
         private ToolStripButton deleteButton;
-        private ToolStripButton toolStripButton2;
+        private ToolStripButton addButton;
         private ToolStripButton editButton;
         private ToolStripStatusLabel ApplicantsCountLabel;
         private ToolStripStatusLabel applicantsCount;

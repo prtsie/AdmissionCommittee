@@ -11,7 +11,7 @@ namespace AdmissionCommittee.Models
     /// <summary>
     /// Класс абитуриента
     /// </summary>
-    internal sealed class Applicant
+    public sealed class Applicant : ICloneable
     {
         public Guid Id { get; private set; } = Guid.NewGuid();
 
@@ -45,5 +45,7 @@ namespace AdmissionCommittee.Models
         public int ITScore { get; set; }
 
         public int TotalScore => MathScore + RussianScore + ITScore;
+
+        public object Clone() => MemberwiseClone();
     }
 }
