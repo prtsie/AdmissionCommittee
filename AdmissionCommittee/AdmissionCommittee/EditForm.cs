@@ -18,7 +18,7 @@ namespace AdmissionCommittee
             nameTextBox.AddBindings(textBox => textBox.Text, Applicant, applicant => applicant.Name, errorProvider);
             surnameTextBox.AddBindings(textBox => textBox.Text, Applicant, applicant => applicant.Surname, errorProvider);
             patronymicTextBox.AddBindings(textBox => textBox.Text, Applicant, applicant => applicant.Patronymic, errorProvider);
-            birthDateTimePicker.AddBindings(datePicker => datePicker.Value, Applicant, applicant => applicant.BirthDay);
+            birthDateTimePicker.AddBindings(datePicker => datePicker.Value, Applicant, applicant => applicant.BirthDay, errorProvider);
             mathScoreNumericUpDown.AddBindings(numericUpDown => numericUpDown.Value, Applicant, applicant => applicant.MathScore, errorProvider);
             russianScoreNumericUpDown.AddBindings(numericUpDown => numericUpDown.Value, Applicant, applicant => applicant.RussianScore, errorProvider);
             ITScoreNumericUpDown.AddBindings(numericUpDown => numericUpDown.Value, Applicant, clone => clone.ITScore, errorProvider);
