@@ -15,12 +15,12 @@ namespace AdmissionCommittee
             genderComboBox.Items.AddRange(Enum.GetValues<Gender>().Cast<object>().ToArray());
             formOfEducationComboBox.AddBindings(comboBox => comboBox.SelectedItem, Applicant, applicant => applicant.FormOfEducation);
             genderComboBox.AddBindings(comboBox => comboBox.SelectedItem, Applicant, applicant => applicant.Gender);
-            nameTextBox.AddBindings(textBox => textBox.Text, Applicant, Applicant => Applicant.Name, errorProvider);
-            surnameTextBox.AddBindings(textBox => textBox.Text, Applicant, Applicant => Applicant.Surname, errorProvider);
-            patronymicTextBox.AddBindings(textBox => textBox.Text, Applicant, Applicant => Applicant.Patronymic, errorProvider);
-            birthDateTimePicker.AddBindings(datePicker => datePicker.Value, Applicant, Applicant => Applicant.BirthDay);
-            mathScoreNumericUpDown.AddBindings(numericUpDown => numericUpDown.Value, Applicant, Applicant => Applicant.MathScore, errorProvider);
-            russianScoreNumericUpDown.AddBindings(numericUpDown => numericUpDown.Value, Applicant, Applicant => Applicant.RussianScore, errorProvider);
+            nameTextBox.AddBindings(textBox => textBox.Text, Applicant, applicant => applicant.Name, errorProvider);
+            surnameTextBox.AddBindings(textBox => textBox.Text, Applicant, applicant => applicant.Surname, errorProvider);
+            patronymicTextBox.AddBindings(textBox => textBox.Text, Applicant, applicant => applicant.Patronymic, errorProvider);
+            birthDateTimePicker.AddBindings(datePicker => datePicker.Value, Applicant, applicant => applicant.BirthDay);
+            mathScoreNumericUpDown.AddBindings(numericUpDown => numericUpDown.Value, Applicant, applicant => applicant.MathScore, errorProvider);
+            russianScoreNumericUpDown.AddBindings(numericUpDown => numericUpDown.Value, Applicant, applicant => applicant.RussianScore, errorProvider);
             ITScoreNumericUpDown.AddBindings(numericUpDown => numericUpDown.Value, Applicant, clone => clone.ITScore, errorProvider);
         }
 
