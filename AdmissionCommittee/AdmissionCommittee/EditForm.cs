@@ -28,7 +28,7 @@ namespace AdmissionCommittee
         {
             var context = new ValidationContext(Applicant);
             var results = new List<ValidationResult>();
-            if (Validator.TryValidateObject(Applicant, context, results))
+            if (Validator.TryValidateObject(Applicant, context, results, true))
             {
                 DialogResult = DialogResult.OK;
                 Close();
