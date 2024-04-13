@@ -6,21 +6,18 @@ namespace AdmissionCommittee
     public partial class ApplicantListForm : Form
     {
         private readonly List<Applicant> data = new();
-        public BindableStruct<bool> IsSelected { get; private set; } = new();
         private Applicant? selected;
         private readonly BindingSource bindingSource;
 
         public ApplicantListForm()
         {
             InitializeComponent();
-            GenerateData(5);
+            GenerateData(30);
             bindingSource = new BindingSource
             {
                 DataSource = data
             };
             dataGridView.DataSource = bindingSource;
-            editButton.AddBindings(target => target.Enabled, IsSelected, source => source.Value);
-            deleteButton.AddBindings(target => target.Enabled, IsSelected, source => source.Value);
         }
 
         private void GenerateData(int count)
@@ -55,8 +52,19 @@ namespace AdmissionCommittee
 
         private void dataGridView_SelectionChanged(object _, EventArgs __)
         {
-            selected = dataGridView.SelectedRows.Count != 0 ? dataGridView.SelectedRows[0].DataBoundItem as Applicant : null;
-            IsSelected.Value = selected != null;
+            if (dataGridView.SelectedRows.Count != 0)
+            {
+                selected = dataGridView.SelectedRows[0].DataBoundItem as Applicant;
+                editButton.Enabled = true;
+                deleteButton.Enabled = true;
+            }
+            else
+            {
+                selected = null;
+                editButton.Enabled = false;
+                deleteButton.Enabled = false;
+            }
+
         }
 
         private void deleteButton_Click(object _, EventArgs __)
@@ -65,6 +73,7 @@ namespace AdmissionCommittee
             if (result == DialogResult.OK)
             {
                 bindingSource.Remove(selected);
+                dataGridView.ClearSelection();
             }
         }
 
