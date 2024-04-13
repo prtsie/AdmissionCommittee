@@ -12,9 +12,9 @@ namespace AdmissionCommittee.Helpers
     static internal class ControlExtensions
     {
         public static void AddBindings<TControl, TSource>(this TControl control,
-            Expression<Func<TControl, object>> targetMember,
+            Expression<Func<TControl, object?>> targetMember,
             TSource source,
-            Expression<Func<TSource, object>> sourceMember,
+            Expression<Func<TSource, object?>> sourceMember,
             ErrorProvider? errorProvider = null)
             where TControl : Control
             where TSource : class
