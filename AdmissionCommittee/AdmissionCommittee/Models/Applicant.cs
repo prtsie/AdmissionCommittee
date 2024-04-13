@@ -27,6 +27,7 @@ namespace AdmissionCommittee.Models
         public string? Patronymic { get; set; }
 
         [Required]
+        [DateRange(ApplicantConstraints.MinAge, ApplicantConstraints.MaxAge)]
         public DateTime BirthDay { get; set; }
 
         ///<summary><inheritdoc cref="Models.FormOfEducation"/></summary>
