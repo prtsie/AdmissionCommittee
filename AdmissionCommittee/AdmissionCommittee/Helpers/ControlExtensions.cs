@@ -9,14 +9,14 @@ using System.Threading.Tasks;
 
 namespace AdmissionCommittee.Helpers
 {
-    static internal class BindableComponentExtensions
+    static internal class ControlExtensions
     {
-        public static void AddBindings<TBindable, TSource>(this TBindable bindableComponent,
-            Expression<Func<TBindable, object>> targetMember,
+        public static void AddBindings<TControl, TSource>(this TControl control,
+            Expression<Func<TControl, object>> targetMember,
             TSource source,
             Expression<Func<TSource, object>> sourceMember,
             ErrorProvider? errorProvider = null)
-            where TBindable : IBindableComponent
+            where TControl : Control
             where TSource : class
         {
             var sourceMemberName = GetMemberName(sourceMember);
@@ -24,9 +24,9 @@ namespace AdmissionCommittee.Helpers
             {
                 DataSourceUpdateMode = DataSourceUpdateMode.OnPropertyChanged
             };
-            bindableComponent.DataBindings.Add(binding);
+            control.DataBindings.Add(binding);
 
-            if (bindableComponent is Control control && errorProvider != null)
+            if (errorProvider != null)
             {
                 var sourcePropertyInfo = source.GetType().GetProperty(sourceMemberName);
                 var validationAttributes = sourcePropertyInfo?.GetCustomAttributes<ValidationAttribute>();
