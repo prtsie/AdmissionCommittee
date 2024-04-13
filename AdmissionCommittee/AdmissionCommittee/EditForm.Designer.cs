@@ -264,13 +264,17 @@
             // 
             // saveButton
             // 
-            saveButton.DialogResult = DialogResult.OK;
             saveButton.Location = new Point(169, 355);
             saveButton.Name = "saveButton";
             saveButton.Size = new Size(75, 23);
             saveButton.TabIndex = 2;
             saveButton.Text = "Сохранить";
             saveButton.UseVisualStyleBackColor = true;
+            saveButton.Click += saveButton_Click;
+            // 
+            // errorProvider
+            // 
+            errorProvider.ContainerControl = this;
             // 
             // errorProvider
             // 
