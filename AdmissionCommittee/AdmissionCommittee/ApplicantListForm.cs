@@ -3,6 +3,7 @@ using AdmissionCommittee.Models;
 
 namespace AdmissionCommittee
 {
+    /// <summary>‘орма со списком абитуриентов</summary>
     public partial class ApplicantListForm : Form
     {
         private readonly List<Applicant> data = new();
@@ -20,6 +21,8 @@ namespace AdmissionCommittee
             dataGridView.DataSource = bindingSource;
         }
 
+        /// <summary>√енератор абитуриентов</summary>
+        /// <param name="count">количество абитуриентов дл€ генерации</param>
         private void GenerateData(int count)
         {
             var random = new Random();
