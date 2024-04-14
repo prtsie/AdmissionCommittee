@@ -13,10 +13,10 @@ namespace AdmissionCommittee
         public ApplicantListForm()
         {
             InitializeComponent();
-            GenerateData(30);
+            GenerateData(10);
             bindingSource = new();
             bindingSource.ListChanged += (o, args) =>
-                applicantsCount.Text = (bindingSource.DataSource as IList<Applicant>)?.Count(applicant => applicant.TotalScore >= 150).ToString();
+                applicantsCount.Text = (bindingSource.DataSource as IList<Applicant>)?.Count(applicant => applicant.TotalScore > 150).ToString();
             bindingSource.DataSource = data;
             dataGridView.DataSource = bindingSource;
         }
