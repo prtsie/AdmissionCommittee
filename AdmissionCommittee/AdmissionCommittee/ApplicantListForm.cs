@@ -96,7 +96,7 @@ namespace AdmissionCommittee
             var result = editForm.ShowDialog();
             if (result == DialogResult.OK)
             {
-                bindingSource.Add(editForm.Applicant);
+                bindingSource.Insert(0, editForm.Applicant);
             }
         }
     }
