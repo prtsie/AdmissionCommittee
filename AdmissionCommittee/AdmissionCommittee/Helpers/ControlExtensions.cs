@@ -9,8 +9,17 @@ using System.Threading.Tasks;
 
 namespace AdmissionCommittee.Helpers
 {
+    /// <summary>Метод расширения для <see cref="Control"/></summary>
     static internal class ControlExtensions
     {
+        /// <summary>Привязка лямбда-выражениями</summary>
+        /// <typeparam name="TControl"></typeparam>
+        /// <typeparam name="TSource"></typeparam>
+        /// <param name="control"></param>
+        /// <param name="targetMember">Член для привязки</param>
+        /// <param name="source">Источник привязки</param>
+        /// <param name="sourceMember">Свойство источника для привязки</param>
+        /// <param name="errorProvider"></param>
         public static void AddBindings<TControl, TSource>(this TControl control,
             Expression<Func<TControl, object?>> targetMember,
             TSource source,
