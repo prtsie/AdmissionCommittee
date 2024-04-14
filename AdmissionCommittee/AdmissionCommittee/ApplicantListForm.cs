@@ -28,7 +28,7 @@ namespace AdmissionCommittee
             var now = DateTime.Now;
             string[] names = ["Алёша", "Вася", "Иннокентий", "Олег", "Доброгей", "Даздраперма", "Наруто"];
             string[] surnames = ["Иванов", "Каерчывпак", "Абдулгаджиев"];
-            string[] patronymics = ["Магомедович", "Валентинович", "Евсеевич", "Аыуыаеич"];
+            string?[] patronymics = ["Магомедович", "Валентинович", "Евсеевич", "Аыуыаеич", null];
             for (var i = 0; i < count; i++)
             {
                 var year = random.Next(now.Year - ApplicantConstraints.MaxAge, now.Year - ApplicantConstraints.MinAge + 1);
