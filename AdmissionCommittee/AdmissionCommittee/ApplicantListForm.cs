@@ -13,10 +13,10 @@ namespace AdmissionCommittee
         {
             InitializeComponent();
             GenerateData(30);
-            bindingSource = new BindingSource
-            {
-                DataSource = data
-            };
+            bindingSource = new BindingSource();
+            bindingSource.ListChanged += (o, args) =>
+                applicantsCount.Text = (bindingSource.DataSource as IList<Applicant>)?.Count(applicant => applicant.TotalScore >= 150).ToString();
+            bindingSource.DataSource = data;
             dataGridView.DataSource = bindingSource;
         }
 
