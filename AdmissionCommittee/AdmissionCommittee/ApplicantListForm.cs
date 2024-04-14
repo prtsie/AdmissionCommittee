@@ -91,7 +91,7 @@ namespace AdmissionCommittee
 
         private void deleteButton_Click(object _, EventArgs __)
         {
-            var result = MessageBox.Show("Точно удалить?", "Удаление", MessageBoxButtons.OKCancel, MessageBoxIcon.Question)
+            var result = MessageBox.Show("Точно удалить?", "Удаление", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
             if (result == DialogResult.OK)
             {
                 bindingSource.Remove(selected);
