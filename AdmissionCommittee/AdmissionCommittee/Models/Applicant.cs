@@ -17,11 +17,11 @@ namespace AdmissionCommittee.Models
 
         [Required]
         [MaxLength(ApplicantConstraints.MaxLength)]
-        public string Name { get; set; }
+        public string? Name { get; set; }
 
         [Required]
         [MaxLength(ApplicantConstraints.MaxLength)]
-        public string Surname { get; set; }
+        public string? Surname { get; set; }
 
         [MaxLength(ApplicantConstraints.MaxLength)]
         public string? Patronymic { get; set; }
