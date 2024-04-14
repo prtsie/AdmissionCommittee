@@ -7,16 +7,16 @@ using System.Threading.Tasks;
 
 namespace AdmissionCommittee.Models
 {
-    internal class DateRangeAttribute : ValidationAttribute
+    internal sealed class DateRangeAttribute : ValidationAttribute
     {
-        private DateTime from;
-        private DateTime to;
+        private readonly DateTime from;
+        private readonly DateTime to;
 
         public DateRangeAttribute(int minAge, int maxAge)
         {
             if (minAge > maxAge)
             {
-                throw new ArgumentException();
+                throw new ArgumentException("Минимальный возраст больше максимального");
             }
             from = DateTime.Now.AddYears(-maxAge).Date;
             to = DateTime.Now.AddYears(-minAge).Date;
