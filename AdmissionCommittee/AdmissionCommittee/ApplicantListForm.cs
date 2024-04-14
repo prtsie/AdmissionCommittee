@@ -3,7 +3,7 @@ using AdmissionCommittee.Models;
 
 namespace AdmissionCommittee
 {
-    /// <summary>Форма со списком абитуриентов</summary>
+    /// <summary>Р¤РѕСЂРјР° СЃРѕ СЃРїРёСЃРєРѕРј Р°Р±РёС‚СѓСЂРёРµРЅС‚РѕРІ</summary>
     public partial class ApplicantListForm : Form
     {
         private readonly List<Applicant> data = new();
@@ -21,8 +21,8 @@ namespace AdmissionCommittee
             dataGridView.DataSource = bindingSource;
         }
 
-        /// <summary>Генератор абитуриентов</summary>
-        /// <param name="count">количество абитуриентов для генерации</param>
+        /// <summary>Р“РµРЅРµСЂР°С‚РѕСЂ Р°Р±РёС‚СѓСЂРёРµРЅС‚РѕРІ</summary>
+        /// <param name="count">РєРѕР»РёС‡РµСЃС‚РІРѕ Р°Р±РёС‚СѓСЂРёРµРЅС‚РѕРІ РґР»СЏ РіРµРЅРµСЂР°С†РёРё</param>
         private void GenerateData(int count)
         {
             var random = new Random();
@@ -31,9 +31,9 @@ namespace AdmissionCommittee
             var now = DateTime.Now;
             var minYear = now.Year - ApplicantConstraints.MaxAge;
             var maxYear = now.Year - ApplicantConstraints.MinAge;
-            string[] names = ["Алёша", "Вася", "Иннокентий", "Олег", "Доброгей", "Даздраперма", "Наруто"];
-            string[] surnames = ["Иванов", "Каерчывпак", "Абдулгаджиев"];
-            string?[] patronymics = ["Магомедович", "Валентинович", "Евсеевич", "Аыуыаеич", null];
+            string[] names = ["РђР»С‘С€Р°", "Р’Р°СЃСЏ", "РРЅРЅРѕРєРµРЅС‚РёР№", "РћР»РµРі", "Р”РѕР±СЂРѕРіРµР№", "Р”Р°Р·РґСЂР°РїРµСЂРјР°", "РќР°СЂСѓС‚Рѕ"];
+            string[] surnames = ["РРІР°РЅРѕРІ", "РљР°РµСЂС‡С‹РІРїР°Рє", "РђР±РґСѓР»РіР°РґР¶РёРµРІ"];
+            string?[] patronymics = ["РњР°РіРѕРјРµРґРѕРІРёС‡", "Р’Р°Р»РµРЅС‚РёРЅРѕРІРёС‡", "Р•РІСЃРµРµРІРёС‡", "РђС‹СѓС‹Р°РµРёС‡", null];
             for (var i = 0; i < count; i++)
             {
                 var year = random.Next(minYear, maxYear + 1);
@@ -91,7 +91,7 @@ namespace AdmissionCommittee
 
         private void deleteButton_Click(object _, EventArgs __)
         {
-            var result = MessageBox.Show("Точно удалить?", "Удаление", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
+            var result = MessageBox.Show("РўРѕС‡РЅРѕ СѓРґР°Р»РёС‚СЊ?", "РЈРґР°Р»РµРЅРёРµ", MessageBoxButtons.OKCancel, MessageBoxIcon.Question)
             if (result == DialogResult.OK)
             {
                 bindingSource.Remove(selected);
