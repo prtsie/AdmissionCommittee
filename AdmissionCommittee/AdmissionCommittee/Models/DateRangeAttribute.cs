@@ -24,7 +24,7 @@ namespace AdmissionCommittee.Models
 
         public override bool IsValid(object? value)
         {
-            if (value is DateTime date && from <= date && date <= to)
+            if (value is DateTime date && from <= date && date < to)
             {
                 return true;
             }
