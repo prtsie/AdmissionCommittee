@@ -18,8 +18,13 @@ namespace AdmissionCommittee.Models
             {
                 throw new ArgumentException("Минимальный возраст больше максимального");
             }
+<<<<<<< HEAD
             from = DateTime.Now.AddYears(-maxAge).Date;
             to = DateTime.Now.AddYears(-minAge + 1).Date;
+=======
+            from = DateTime.Now.AddYears(-maxAge - 1).Date;
+            to = DateTime.Now.AddYears(-minAge).Date;
+>>>>>>> 5-форма-для-редактирования
         }
 
         public override bool IsValid(object? value)
