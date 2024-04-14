@@ -14,7 +14,7 @@ namespace AdmissionCommittee
         {
             InitializeComponent();
             GenerateData(30);
-            bindingSource = new BindingSource();
+            bindingSource = new();
             bindingSource.ListChanged += (o, args) =>
                 applicantsCount.Text = (bindingSource.DataSource as IList<Applicant>)?.Count(applicant => applicant.TotalScore >= 150).ToString();
             bindingSource.DataSource = data;
