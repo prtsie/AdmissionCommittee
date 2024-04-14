@@ -19,12 +19,12 @@ namespace AdmissionCommittee.Models
                 throw new ArgumentException("Минимальный возраст больше максимального");
             }
             from = DateTime.Now.AddYears(-maxAge).Date;
-            to = DateTime.Now.AddYears(-minAge).Date;
+            to = DateTime.Now.AddYears(-minAge + 1).Date;
         }
 
         public override bool IsValid(object? value)
         {
-            if (value is DateTime date && from <= date && date <= to)
+            if (value is DateTime date && from <= date && date < to)
             {
                 return true;
             }
