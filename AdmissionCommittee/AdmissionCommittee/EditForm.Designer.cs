@@ -210,19 +210,23 @@
             // 
             // genderComboBox
             // 
+            genderComboBox.DrawMode = DrawMode.OwnerDrawVariable;
             genderComboBox.FormattingEnabled = true;
             genderComboBox.Location = new Point(140, 167);
             genderComboBox.Name = "genderComboBox";
-            genderComboBox.Size = new Size(148, 23);
+            genderComboBox.Size = new Size(148, 24);
             genderComboBox.TabIndex = 5;
+            genderComboBox.DrawItem += ComboBox_DrawItem;
             // 
             // formOfEducationComboBox
             // 
+            formOfEducationComboBox.DrawMode = DrawMode.OwnerDrawFixed;
             formOfEducationComboBox.FormattingEnabled = true;
             formOfEducationComboBox.Location = new Point(140, 138);
             formOfEducationComboBox.Name = "formOfEducationComboBox";
-            formOfEducationComboBox.Size = new Size(148, 23);
+            formOfEducationComboBox.Size = new Size(148, 24);
             formOfEducationComboBox.TabIndex = 4;
+            formOfEducationComboBox.DrawItem += ComboBox_DrawItem;
             // 
             // birthDateTimePicker
             // 
@@ -322,7 +326,6 @@
         private GroupBox groupBox2;
         private Button cancelButton;
         private Button saveButton;
-        private ErrorProvider errorProvider;
         private ErrorProvider errorProvider1;
     }
 }

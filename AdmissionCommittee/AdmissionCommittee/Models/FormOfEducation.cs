@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -9,11 +10,11 @@ namespace AdmissionCommittee.Models
     /// <summary>Формы обучения для <see cref="Applicant"/></summary>
     public enum FormOfEducation
     {
-        /// <summary>Очная форма обучения</summary>
+        [Display(Name = "Очная")]
         Intramural,
-        /// <summary>Заочная форма обучения </summary>
+        [Display(Name = "Заочная")]
         Extramural,
-        /// <summary>Очно-заочная форма обучения</summary>
+        [Display(Name = "Очно-заочная")]
         PartTime
     }
 }
