@@ -13,15 +13,16 @@ namespace AdmissionCommittee
             Applicant = applicant == null ? new Applicant { BirthDay = DateTime.Now } : (Applicant)applicant.Clone();
             formOfEducationComboBox.Items.AddRange(Enum.GetValues<FormOfEducation>().Cast<object>().ToArray());
             genderComboBox.Items.AddRange(Enum.GetValues<Gender>().Cast<object>().ToArray());
-            formOfEducationComboBox.AddBindings(comboBox => comboBox.SelectedItem, Applicant, applicant => applicant.FormOfEducation);
-            genderComboBox.AddBindings(comboBox => comboBox.SelectedItem, Applicant, applicant => applicant.Gender);
-            nameTextBox.AddBindings(textBox => textBox.Text, Applicant, applicant => applicant.Name, errorProvider);
-            surnameTextBox.AddBindings(textBox => textBox.Text, Applicant, applicant => applicant.Surname, errorProvider);
-            patronymicTextBox.AddBindings(textBox => textBox.Text, Applicant, applicant => applicant.Patronymic, errorProvider);
-            birthDateTimePicker.AddBindings(datePicker => datePicker.Value, Applicant, applicant => applicant.BirthDay, errorProvider);
-            mathScoreNumericUpDown.AddBindings(numericUpDown => numericUpDown.Value, Applicant, applicant => applicant.MathScore, errorProvider);
-            russianScoreNumericUpDown.AddBindings(numericUpDown => numericUpDown.Value, Applicant, applicant => applicant.RussianScore, errorProvider);
-            ITScoreNumericUpDown.AddBindings(numericUpDown => numericUpDown.Value, Applicant, clone => clone.ITScore, errorProvider);
+
+            formOfEducationComboBox.AddBindings(x => x.SelectedItem, Applicant, x => x.FormOfEducation);
+            genderComboBox.AddBindings(x => x.SelectedItem, Applicant, x => x.Gender);
+            nameTextBox.AddBindings(x => x.Text, Applicant, x => x.Name, errorProvider1);
+            surnameTextBox.AddBindings(x => x.Text, Applicant, x => x.Surname, errorProvider1);
+            patronymicTextBox.AddBindings(x => x.Text, Applicant, x => x.Patronymic, errorProvider1);
+            birthDateTimePicker.AddBindings(x => x.Value, Applicant, x => x.BirthDay, errorProvider1);
+            mathScoreNumericUpDown.AddBindings(x => x.Value, Applicant, x => x.MathScore, errorProvider1);
+            russianScoreNumericUpDown.AddBindings(x => x.Value, Applicant, x => x.RussianScore, errorProvider1);
+            ITScoreNumericUpDown.AddBindings(x => x.Value, Applicant, x => x.ITScore, errorProvider1);
         }
 
         private void saveButton_Click(object _, EventArgs __)

@@ -51,13 +51,13 @@
             nameTextBox = new TextBox();
             cancelButton = new Button();
             saveButton = new Button();
-            errorProvider = new ErrorProvider(components);
+            errorProvider1 = new ErrorProvider(components);
             groupBox1.SuspendLayout();
             groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)mathScoreNumericUpDown).BeginInit();
             ((System.ComponentModel.ISupportInitialize)russianScoreNumericUpDown).BeginInit();
             ((System.ComponentModel.ISupportInitialize)ITScoreNumericUpDown).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)errorProvider).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)errorProvider1).BeginInit();
             SuspendLayout();
             // 
             // groupBox1
@@ -272,13 +272,9 @@
             saveButton.UseVisualStyleBackColor = true;
             saveButton.Click += saveButton_Click;
             // 
-            // errorProvider
+            // errorProvider1
             // 
-            errorProvider.ContainerControl = this;
-            // 
-            // errorProvider
-            // 
-            errorProvider.ContainerControl = this;
+            errorProvider1.ContainerControl = this;
             // 
             // EditForm
             // 
@@ -298,7 +294,7 @@
             ((System.ComponentModel.ISupportInitialize)mathScoreNumericUpDown).EndInit();
             ((System.ComponentModel.ISupportInitialize)russianScoreNumericUpDown).EndInit();
             ((System.ComponentModel.ISupportInitialize)ITScoreNumericUpDown).EndInit();
-            ((System.ComponentModel.ISupportInitialize)errorProvider).EndInit();
+            ((System.ComponentModel.ISupportInitialize)errorProvider1).EndInit();
             ResumeLayout(false);
         }
 
@@ -327,5 +323,6 @@
         private Button cancelButton;
         private Button saveButton;
         private ErrorProvider errorProvider;
+        private ErrorProvider errorProvider1;
     }
 }

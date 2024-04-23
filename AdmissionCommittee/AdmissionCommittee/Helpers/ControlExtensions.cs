@@ -48,7 +48,7 @@ namespace AdmissionCommittee.Helpers
                         errorProvider.SetError(control, string.Empty);
                         if (!Validator.TryValidateObject(source, context, results, true))
                         {
-                            foreach (var error in results)
+                            foreach (var error in results.Where(x => x.MemberNames.Contains(sourceMemberName)))
                             {
                                 errorProvider.SetError(control, error.ErrorMessage);
                             }
