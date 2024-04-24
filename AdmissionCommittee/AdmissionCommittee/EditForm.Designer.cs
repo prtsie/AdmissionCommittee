@@ -211,6 +211,7 @@
             // genderComboBox
             // 
             genderComboBox.DrawMode = DrawMode.OwnerDrawVariable;
+            genderComboBox.DropDownStyle = ComboBoxStyle.DropDownList;
             genderComboBox.FormattingEnabled = true;
             genderComboBox.Location = new Point(140, 167);
             genderComboBox.Name = "genderComboBox";
@@ -221,6 +222,7 @@
             // formOfEducationComboBox
             // 
             formOfEducationComboBox.DrawMode = DrawMode.OwnerDrawFixed;
+            formOfEducationComboBox.DropDownStyle = ComboBoxStyle.DropDownList;
             formOfEducationComboBox.FormattingEnabled = true;
             formOfEducationComboBox.Location = new Point(140, 138);
             formOfEducationComboBox.Name = "formOfEducationComboBox";

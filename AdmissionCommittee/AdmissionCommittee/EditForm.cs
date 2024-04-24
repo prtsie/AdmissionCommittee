@@ -44,7 +44,7 @@ namespace AdmissionCommittee
         {
             var comboBox = (ComboBox)sender;
             var item = (Enum)comboBox.Items[e.Index]!;
-            var name = Program.GetEnumDisplayName(item);
+            var name = Program.GetMemberDisplayName(item.GetType(), item.ToString());
             var size = e.Graphics.MeasureString(name, genderComboBox.Font);
             var pos = new PointF(e.Bounds.Left, e.Bounds.Top - (e.Bounds.Height - size.Height) / 2);
             e.DrawBackground();

@@ -19,28 +19,13 @@ namespace AdmissionCommittee
             Application.Run(new ApplicantListForm());
         }
 
-        /// <summary>Возвращает <see cref="DisplayAttribute.Name"/> для значения <see cref="Enum"></see></summary>
-        /// <exception cref="InvalidOperationException"></exception>
-        public static string GetEnumDisplayName(Enum value)
-        {
-            var attributes = value.GetType().GetField(value.ToString())!.GetCustomAttributes(typeof(DisplayAttribute)).Cast<DisplayAttribute>();
-            foreach (var attribute in attributes)
-            {
-                if (attribute.Name != null)
-                {
-                    return attribute.Name;
-                }
-            }
-            throw new InvalidOperationException(!attributes.Any() ? "У значения нет атрибута Display" : "У атрибута Display не задано свойство Name");
-        }
-
-        /// <summary>Возвращает <see cref="DisplayAttribute.Name"/> у свойства <paramref name="propertyName"/> типа <paramref name="type"/></summary>
+        /// <summary>Возвращает <see cref="DisplayAttribute.Name"/> у члена <paramref name="memberName"/> типа <paramref name="type"/></summary>
         /// <exception cref="NullReferenceException"></exception>
         /// <exception cref="InvalidOperationException"></exception>
-        public static string GetPropertyDisplayName(Type type, string propertyName)
+        public static string GetMemberDisplayName(Type type, string memberName)
         {
-            var property = type.GetProperty(propertyName) ?? throw new NullReferenceException();
-            var attributes = property.GetCustomAttributes(typeof(DisplayAttribute)).Cast<DisplayAttribute>();
+            var member = type.GetMember(memberName).FirstOrDefault() ?? throw new NullReferenceException();
+            var attributes = member.GetCustomAttributes(typeof(DisplayAttribute)).Cast<DisplayAttribute>();
             foreach (var attribute in attributes)
             {
                 if (attribute.Name != null)

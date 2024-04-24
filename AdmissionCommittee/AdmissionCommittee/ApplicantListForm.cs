@@ -1,3 +1,4 @@
+using System.ComponentModel;
 using AdmissionCommittee.Helpers;
 using AdmissionCommittee.Models;
 
@@ -7,121 +8,37 @@ namespace AdmissionCommittee
     public partial class ApplicantListForm : Form
     {
         private const int ScoreThreshold = 150;
-        private readonly List<Applicant> data = new();
-        private Applicant? selected;
-        private readonly BindingSource bindingSource;
+        private readonly BindingList<Applicant> data;
+        private Applicant selected = null!;
+        private readonly BindingSource bindingSource = new();
 
         public ApplicantListForm()
         {
             InitializeComponent();
-            GenerateData(10);
-            bindingSource = new();
-            bindingSource.ListChanged += OnDataUpdate;
+            dataGridView.AutoGenerateColumns = false;
+            data = new(DataGenerator.GenerateApplicants(50).ToList());
+            CalculateScores();
+            data.ListChanged += (o, args) => CalculateScores();
             bindingSource.DataSource = data;
             dataGridView.DataSource = bindingSource;
-            SetColHeaders();
         }
 
-        private void OnDataUpdate(object? _, EventArgs __)
+        private void CalculateScores()
         {
-            applicantsCount.Text = (bindingSource.DataSource as IList<Applicant>)?.Count(applicant => applicant.TotalScore > ScoreThreshold).ToString();
-            SetRowColors();
-        }
-
-        private void SetColHeaders()
-        {
-            foreach (DataGridViewColumn col in dataGridView.Columns)
-            {
-                col.HeaderText = Program.GetPropertyDisplayName(typeof(Applicant), col.HeaderText);
-            }
-        }
-
-        private void SetRowColors()
-        {
-            var colIndex = -1;
-            foreach (DataGridViewColumn col in dataGridView.Columns)
-            {
-                if (col.DataPropertyName == nameof(Applicant.TotalScore))
-                {
-                    colIndex = col.Index;
-                    break;
-                }
-            }
-            if (colIndex == -1)
-            {
-                return;
-            }
-            foreach (DataGridViewRow row in dataGridView.Rows)
-            {
-                if ((int)row.Cells[colIndex].Value >= ScoreThreshold)
-                {
-                    row.DefaultCellStyle.BackColor = Color.Green;
-                }
-            }
-        }
-
-        /// <summary>Генератор абитуриентов</summary>
-        /// <param name="count">количество абитуриентов для генерации</param>
-        private void GenerateData(int count)
-        {
-            var random = new Random();
-            var formOfEducationValues = Enum.GetValues<FormOfEducation>();
-            var genderValues = Enum.GetValues<Gender>();
-            var now = DateTime.Now;
-            var minYear = now.Year - ApplicantConstraints.MaxAge;
-            var maxYear = now.Year - ApplicantConstraints.MinAge;
-            string[] names = ["Алёша", "Вася", "Иннокентий", "Олег", "Доброгей", "Даздраперма", "Наруто"];
-            string[] surnames = ["Иванов", "Каерчывпак", "Абдулгаджиев"];
-            string?[] patronymics = ["Магомедович", "Валентинович", "Евсеевич", "Аыуыаеич", null];
-            for (var i = 0; i < count; i++)
-            {
-                var year = random.Next(minYear, maxYear + 1);
-                int month;
-                int day;
-                if (year == minYear)
-                {
-                    month = random.Next(now.Month, 12 + 1);
-                    var minDay = month == now.Month ? now.Day : 1;
-                    day = random.Next(minDay, DateTime.DaysInMonth(year, month) + 1);
-                }
-                else if (year == maxYear)
-                {
-                    month = random.Next(1, now.Month + 1);
-                    var maxDay = month == now.Month ? now.Day : DateTime.DaysInMonth(year, month);
-                    day = random.Next(1, maxDay);
-                }
-                else
-                {
-                    month = random.Next(1, 12 + 1);
-                    day = random.Next(1, DateTime.DaysInMonth(year, month) + 1);
-                }
-                var applicant = new Applicant
-                {
-                    Name = names[random.Next(names.Length)],
-                    Surname = surnames[random.Next(surnames.Length)],
-                    Patronymic = patronymics[random.Next(patronymics.Length)],
-                    BirthDay = new DateTime(year, month, day),
-                    FormOfEducation = formOfEducationValues[random.Next(formOfEducationValues.Length)],
-                    Gender = genderValues[random.Next(genderValues.Length)],
-                    ITScore = random.Next(101),
-                    RussianScore = random.Next(101),
-                    MathScore = random.Next(101),
-                };
-                data.Add(applicant);
-            }
+            applicantsCount.Text = data.Count(applicant => applicant.TotalScore >= ScoreThreshold).ToString();
         }
 
         private void dataGridView_SelectionChanged(object _, EventArgs __)
         {
             if (dataGridView.SelectedRows.Count != 0)
             {
-                selected = dataGridView.SelectedRows[0].DataBoundItem as Applicant;
+                selected = (Applicant)dataGridView.SelectedRows[0].DataBoundItem;
                 editButton.Enabled = true;
                 deleteButton.Enabled = true;
             }
             else
             {
-                selected = null;
+                selected = null!;
                 editButton.Enabled = false;
                 deleteButton.Enabled = false;
             }
@@ -133,8 +50,7 @@ namespace AdmissionCommittee
             var result = MessageBox.Show("Точно удалить?", "Удаление", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
             if (result == DialogResult.OK)
             {
-                bindingSource.Remove(selected);
-                dataGridView.ClearSelection();
+                data.Remove(selected);
             }
         }
 
@@ -144,10 +60,17 @@ namespace AdmissionCommittee
             var result = editForm.ShowDialog();
             if (result == DialogResult.OK)
             {
-                var index = bindingSource.IndexOf(selected);
-                bindingSource.RemoveAt(index);
-                bindingSource.Insert(index, editForm.Applicant);
-                dataGridView.ClearSelection();
+                selected.Name = editForm.Applicant.Name;
+                selected.Surname = editForm.Applicant.Surname;
+                selected.Patronymic = editForm.Applicant.Patronymic;
+                selected.BirthDay = editForm.Applicant.BirthDay;
+                selected.FormOfEducation = editForm.Applicant.FormOfEducation;
+                selected.Gender = editForm.Applicant.Gender;
+                selected.MathScore = editForm.Applicant.MathScore;
+                selected.RussianScore = editForm.Applicant.RussianScore;
+                selected.ITScore = editForm.Applicant.ITScore;
+                bindingSource.ResetBindings(false);
+                CalculateScores();
             }
         }
 
@@ -157,17 +80,42 @@ namespace AdmissionCommittee
             var result = editForm.ShowDialog();
             if (result == DialogResult.OK)
             {
-                bindingSource.Insert(0, editForm.Applicant);
+                data.Insert(0, editForm.Applicant);
+                bindingSource.ResetBindings(false);
             }
         }
 
         private void dataGridView_CellFormatting(object _, DataGridViewCellFormattingEventArgs e)
         {
-            if (e.Value is Enum enumValue)
+            var applicant = (Applicant)dataGridView.Rows[e.RowIndex].DataBoundItem;
+            var colIndex = e.ColumnIndex;
+            var col = dataGridView.Columns[colIndex];
+            switch (col.Name)
             {
-                e.Value = Program.GetEnumDisplayName(enumValue);
-                e.FormattingApplied = true;
+                case "name":
+                    e.Value = $"{applicant.Surname} {applicant.Name} {applicant.Patronymic}".TrimEnd();
+                    break;
+                case "birthDate":
+                    e.Value = applicant.BirthDay.ToShortDateString();
+                    break;
+                case "formOfEducation":
+                    e.Value = Program.GetMemberDisplayName(typeof(FormOfEducation), applicant.FormOfEducation.ToString());
+                    break;
+                case "gender":
+                    e.Value = Program.GetMemberDisplayName(typeof(Gender), applicant.Gender.ToString());
+                    break;
+                case "totalScore":
+                    if ((int)e.Value! >= ScoreThreshold)
+                    {
+                        dataGridView.Rows[e.RowIndex].DefaultCellStyle.BackColor = Color.Green;
+                    }
+                    e.Value = e.Value?.ToString();
+                    break;
+                default:
+                    e.Value = e.Value?.ToString();
+                    break;
             }
+            e.FormattingApplied = true;
         }
     }
 }

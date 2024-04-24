@@ -37,6 +37,15 @@
             editButton = new ToolStripButton();
             deleteButton = new ToolStripButton();
             dataGridView = new DataGridView();
+            id = new DataGridViewTextBoxColumn();
+            name = new DataGridViewTextBoxColumn();
+            birthDate = new DataGridViewTextBoxColumn();
+            formOfEducation = new DataGridViewTextBoxColumn();
+            gender = new DataGridViewTextBoxColumn();
+            mathScore = new DataGridViewTextBoxColumn();
+            russianScore = new DataGridViewTextBoxColumn();
+            ITScore = new DataGridViewTextBoxColumn();
+            totalScore = new DataGridViewTextBoxColumn();
             statusStrip.SuspendLayout();
             toolStrip.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridView).BeginInit();
@@ -108,6 +117,7 @@
             dataGridView.AllowUserToDeleteRows = false;
             dataGridView.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dataGridView.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridView.Columns.AddRange(new DataGridViewColumn[] { id, name, birthDate, formOfEducation, gender, mathScore, russianScore, ITScore, totalScore });
             dataGridView.Dock = DockStyle.Fill;
             dataGridView.Location = new Point(0, 25);
             dataGridView.MultiSelect = false;
@@ -119,6 +129,71 @@
             dataGridView.CellFormatting += dataGridView_CellFormatting;
             dataGridView.SelectionChanged += dataGridView_SelectionChanged;
             // 
+            // id
+            // 
+            id.DataPropertyName = "Id";
+            id.HeaderText = "Id";
+            id.Name = "id";
+            id.ReadOnly = true;
+            // 
+            // name
+            // 
+            name.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+            name.DataPropertyName = "Name";
+            name.HeaderText = "Имя";
+            name.Name = "name";
+            name.ReadOnly = true;
+            name.Width = 56;
+            // 
+            // birthDate
+            // 
+            birthDate.DataPropertyName = "BirthDay";
+            birthDate.HeaderText = "Дата рождения";
+            birthDate.Name = "birthDate";
+            birthDate.ReadOnly = true;
+            // 
+            // formOfEducation
+            // 
+            formOfEducation.DataPropertyName = "FormOfEducation";
+            formOfEducation.HeaderText = "Форма обучения";
+            formOfEducation.Name = "formOfEducation";
+            formOfEducation.ReadOnly = true;
+            // 
+            // gender
+            // 
+            gender.DataPropertyName = "Gender";
+            gender.HeaderText = "Пол";
+            gender.Name = "gender";
+            gender.ReadOnly = true;
+            // 
+            // mathScore
+            // 
+            mathScore.DataPropertyName = "MathScore";
+            mathScore.HeaderText = "Балл по математике";
+            mathScore.Name = "mathScore";
+            mathScore.ReadOnly = true;
+            // 
+            // russianScore
+            // 
+            russianScore.DataPropertyName = "RussianScore";
+            russianScore.HeaderText = "Балл по русскому";
+            russianScore.Name = "russianScore";
+            russianScore.ReadOnly = true;
+            // 
+            // ITScore
+            // 
+            ITScore.DataPropertyName = "ITScore";
+            ITScore.HeaderText = "Балл по информатике";
+            ITScore.Name = "ITScore";
+            ITScore.ReadOnly = true;
+            // 
+            // totalScore
+            // 
+            totalScore.DataPropertyName = "TotalScore";
+            totalScore.HeaderText = "Сумма баллов";
+            totalScore.Name = "totalScore";
+            totalScore.ReadOnly = true;
+            // 
             // ApplicantListForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -127,6 +202,7 @@
             Controls.Add(dataGridView);
             Controls.Add(toolStrip);
             Controls.Add(statusStrip);
+            DoubleBuffered = true;
             Name = "ApplicantListForm";
             Text = "Абитуриенты";
             statusStrip.ResumeLayout(false);
@@ -148,5 +224,14 @@
         private ToolStripStatusLabel ApplicantsCountLabel;
         private ToolStripStatusLabel applicantsCount;
         private DataGridView dataGridView;
+        private DataGridViewTextBoxColumn id;
+        private DataGridViewTextBoxColumn name;
+        private DataGridViewTextBoxColumn birthDate;
+        private DataGridViewTextBoxColumn formOfEducation;
+        private DataGridViewTextBoxColumn gender;
+        private DataGridViewTextBoxColumn mathScore;
+        private DataGridViewTextBoxColumn russianScore;
+        private DataGridViewTextBoxColumn ITScore;
+        private DataGridViewTextBoxColumn totalScore;
     }
 }
