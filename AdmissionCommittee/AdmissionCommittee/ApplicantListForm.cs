@@ -6,6 +6,7 @@ namespace AdmissionCommittee
     /// <summary>Форма со списком абитуриентов</summary>
     public partial class ApplicantListForm : Form
     {
+        private const int ScoreThreshold = 150;
         private readonly List<Applicant> data = new();
         private Applicant? selected;
         private readonly BindingSource bindingSource;
@@ -15,18 +16,48 @@ namespace AdmissionCommittee
             InitializeComponent();
             GenerateData(10);
             bindingSource = new();
-            bindingSource.ListChanged += (o, args) =>
-                applicantsCount.Text = (bindingSource.DataSource as IList<Applicant>)?.Count(applicant => applicant.TotalScore > 150).ToString();
+            bindingSource.ListChanged += OnDataUpdate;
+            bindingSource.DataSource = data;
+            dataGridView.DataSource = bindingSource;
             SetColHeaders();
+            SetRowColors();
+        }
+
+        private void OnDataUpdate(object? _, EventArgs __)
+        {
+            applicantsCount.Text = (bindingSource.DataSource as IList<Applicant>)?.Count(applicant => applicant.TotalScore > ScoreThreshold).ToString();
+            SetRowColors();
         }
 
         private void SetColHeaders()
         {
-            bindingSource.DataSource = data;
-            dataGridView.DataSource = bindingSource;
             foreach (DataGridViewColumn col in dataGridView.Columns)
             {
                 col.HeaderText = Program.GetPropertyDisplayName(typeof(Applicant), col.HeaderText);
+            }
+        }
+
+        private void SetRowColors()
+        {
+            var colIndex = -1;
+            foreach (DataGridViewColumn col in dataGridView.Columns)
+            {
+                if (col.DataPropertyName == nameof(Applicant.TotalScore))
+                {
+                    colIndex = col.Index;
+                    break;
+                }
+            }
+            if (colIndex == -1)
+            {
+                return;
+            }
+            foreach (DataGridViewRow row in dataGridView.Rows)
+            {
+                if ((int)row.Cells[colIndex].Value >= ScoreThreshold)
+                {
+                    row.DefaultCellStyle.BackColor = Color.Green;
+                }
             }
         }
 
@@ -128,6 +159,15 @@ namespace AdmissionCommittee
             if (result == DialogResult.OK)
             {
                 bindingSource.Insert(0, editForm.Applicant);
+            }
+        }
+
+        private void dataGridView_CellFormatting(object _, DataGridViewCellFormattingEventArgs e)
+        {
+            if (e.Value is Enum enumValue)
+            {
+                e.Value = Program.GetEnumDisplayName(enumValue);
+                e.FormattingApplied = true;
             }
         }
     }

@@ -115,6 +115,7 @@
             dataGridView.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dataGridView.Size = new Size(800, 403);
             dataGridView.TabIndex = 2;
+            dataGridView.CellFormatting += dataGridView_CellFormatting;
             dataGridView.SelectionChanged += dataGridView_SelectionChanged;
             // 
             // ApplicantListForm
