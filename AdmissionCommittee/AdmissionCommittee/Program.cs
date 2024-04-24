@@ -1,6 +1,7 @@
 using System.Linq.Expressions;
 using System.Reflection;
 using System.ComponentModel.DataAnnotations;
+using AdmissionCommittee.Models;
 
 namespace AdmissionCommittee
 {
@@ -24,6 +25,20 @@ namespace AdmissionCommittee
         public static string GetEnumDisplayName(Enum value)
         {
             var attributes = value.GetType().GetField(value.ToString())!.GetCustomAttributes(typeof(DisplayAttribute)).Cast<DisplayAttribute>();
+            foreach (var attribute in attributes)
+            {
+                if (attribute.Name != null)
+                {
+                    return attribute.Name;
+                }
+            }
+            throw new InvalidOperationException(!attributes.Any() ? "У значения нет атрибута Display" : "У атрибута Display не задано свойство Name");
+        }
+
+        public static string GetPropertyDisplayName(Type type, string propertyName)
+        {
+            var property = type.GetProperty(propertyName) ?? throw new NullReferenceException();
+            var attributes = property.GetCustomAttributes(typeof(DisplayAttribute)).Cast<DisplayAttribute>();
             foreach (var attribute in attributes)
             {
                 if (attribute.Name != null)

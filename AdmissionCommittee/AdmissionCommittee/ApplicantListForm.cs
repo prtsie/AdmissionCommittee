@@ -17,8 +17,17 @@ namespace AdmissionCommittee
             bindingSource = new();
             bindingSource.ListChanged += (o, args) =>
                 applicantsCount.Text = (bindingSource.DataSource as IList<Applicant>)?.Count(applicant => applicant.TotalScore > 150).ToString();
+            SetColHeaders();
+        }
+
+        private void SetColHeaders()
+        {
             bindingSource.DataSource = data;
             dataGridView.DataSource = bindingSource;
+            foreach (DataGridViewColumn col in dataGridView.Columns)
+            {
+                col.HeaderText = Program.GetPropertyDisplayName(typeof(Applicant), col.HeaderText);
+            }
         }
 
         /// <summary>Генератор абитуриентов</summary>
