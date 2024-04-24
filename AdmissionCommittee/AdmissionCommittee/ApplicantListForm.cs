@@ -20,7 +20,6 @@ namespace AdmissionCommittee
             bindingSource.DataSource = data;
             dataGridView.DataSource = bindingSource;
             SetColHeaders();
-            OnDataUpdate(null, null!);
         }
 
         private void OnDataUpdate(object? _, EventArgs __)
