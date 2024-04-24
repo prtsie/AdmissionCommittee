@@ -20,7 +20,6 @@ namespace AdmissionCommittee
         }
 
         /// <summary>Возвращает <see cref="DisplayAttribute.Name"/> для значения <see cref="Enum"></see></summary>
-        /// <param name="value"></param>
         /// <exception cref="InvalidOperationException"></exception>
         public static string GetEnumDisplayName(Enum value)
         {
@@ -35,6 +34,9 @@ namespace AdmissionCommittee
             throw new InvalidOperationException(!attributes.Any() ? "У значения нет атрибута Display" : "У атрибута Display не задано свойство Name");
         }
 
+        /// <summary>Возвращает <see cref="DisplayAttribute.Name"/> у свойства <paramref name="propertyName"/> типа <paramref name="type"/></summary>
+        /// <exception cref="NullReferenceException"></exception>
+        /// <exception cref="InvalidOperationException"></exception>
         public static string GetPropertyDisplayName(Type type, string propertyName)
         {
             var property = type.GetProperty(propertyName) ?? throw new NullReferenceException();
