@@ -127,6 +127,7 @@
             dataGridView.Size = new Size(800, 403);
             dataGridView.TabIndex = 2;
             dataGridView.CellFormatting += dataGridView_CellFormatting;
+            dataGridView.CellPainting += dataGridView_CellPainting;
             dataGridView.SelectionChanged += dataGridView_SelectionChanged;
             // 
             // id

@@ -1,6 +1,7 @@
 using System.ComponentModel;
 using AdmissionCommittee.Helpers;
 using AdmissionCommittee.Models;
+using AdmissionCommittee.Properties;
 
 namespace AdmissionCommittee
 {
@@ -8,9 +9,11 @@ namespace AdmissionCommittee
     public partial class ApplicantListForm : Form
     {
         private const int ScoreThreshold = 150;
+        private const int CalendarMargin = 3;
         private readonly BindingList<Applicant> data;
         private Applicant selected = null!;
         private readonly BindingSource bindingSource = new();
+        private readonly Bitmap calendarImage = Resources.calendar;
 
         public ApplicantListForm()
         {
@@ -116,6 +119,27 @@ namespace AdmissionCommittee
                     break;
             }
             e.FormattingApplied = true;
+        }
+
+        private void dataGridView_CellPainting(object sender, DataGridViewCellPaintingEventArgs e)
+        {
+            if (e.ColumnIndex < 0 || e.RowIndex < 0)
+            {
+                return;
+            }
+            if (dataGridView.Columns[e.ColumnIndex].Name == "birthDate")
+            {
+                e.PaintBackground(e.CellBounds, true);
+                var point = new PointF(e.CellBounds.Left + CalendarMargin, e.CellBounds.Top + e.CellBounds.Height / 2 - calendarImage.Height / 2);
+                e.Graphics!.DrawImage(calendarImage, point);
+                var offset = calendarImage.Width + CalendarMargin * 2;
+                var value = ((DateTime)e.Value!).ToShortDateString();
+                var valueSize = e.Graphics.MeasureString(value, dataGridView.Font);
+                var brush = (e.State & DataGridViewElementStates.Selected) != DataGridViewElementStates.None ? Brushes.White : Brushes.Black;
+                var pos = new PointF(e.CellBounds.X + offset, e.CellBounds.Y + e.CellBounds.Height / 2 - valueSize.Height / 2);
+                e.Graphics.DrawString(value, dataGridView.Font, brush, pos);
+                e.Handled = true;
+            }
         }
     }
 }
