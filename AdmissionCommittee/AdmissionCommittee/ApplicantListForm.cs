@@ -1,4 +1,7 @@
 using System.ComponentModel;
+using System.Data.Entity;
+using System.Data.Entity.Migrations;
+using AdmissionCommittee.DB;
 using AdmissionCommittee.Helpers;
 using AdmissionCommittee.Models;
 using AdmissionCommittee.Properties;
@@ -19,7 +22,13 @@ namespace AdmissionCommittee
         {
             InitializeComponent();
             dataGridView.AutoGenerateColumns = false;
-            data = new(DataGenerator.GenerateApplicants(50).ToList());
+            using var context = new CommitteeContext();
+            if (!context.Applicants.AsNoTracking().Any())
+            {
+                context.Applicants.AddRange(DataGenerator.GenerateApplicants(10));
+                context.SaveChanges();
+            }
+            data = new(context.Applicants.AsNoTracking().ToList());
             CalculateScores();
             data.ListChanged += (o, args) => CalculateScores();
             bindingSource.DataSource = data;
@@ -48,16 +57,19 @@ namespace AdmissionCommittee
 
         }
 
-        private void deleteButton_Click(object _, EventArgs __)
+        private async void deleteButton_Click(object _, EventArgs __)
         {
             var result = MessageBox.Show("Точно удалить?", "Удаление", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
             if (result == DialogResult.OK)
             {
+                using var context = new CommitteeContext();
+                context.Applicants.Remove(context.Applicants.Find(selected.Id));
+                await context.SaveChangesAsync();
                 data.Remove(selected);
             }
         }
 
-        private void editButton_Click(object _, EventArgs __)
+        private async void editButton_Click(object _, EventArgs __)
         {
             var editForm = new EditForm(selected);
             var result = editForm.ShowDialog();
@@ -74,10 +86,14 @@ namespace AdmissionCommittee
                 selected.ITScore = editForm.Applicant.ITScore;
                 bindingSource.ResetBindings(false);
                 CalculateScores();
+                using var context = new CommitteeContext();
+                context.Applicants.AddOrUpdate(editForm.Applicant);
+                await context.SaveChangesAsync();
             }
         }
 
-        private void AddButton_Click(object _, EventArgs __)
+
+        private async void AddButton_Click(object _, EventArgs __)
         {
             var editForm = new EditForm();
             var result = editForm.ShowDialog();
@@ -85,6 +101,9 @@ namespace AdmissionCommittee
             {
                 data.Insert(0, editForm.Applicant);
                 bindingSource.ResetBindings(false);
+                using var context = new CommitteeContext();
+                context.Applicants.Add(editForm.Applicant);
+                await context.SaveChangesAsync();
             }
         }
 
