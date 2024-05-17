@@ -63,7 +63,8 @@ namespace AdmissionCommittee
             if (result == DialogResult.OK)
             {
                 using var context = new CommitteeContext();
-                context.Applicants.Remove(context.Applicants.Find(selected.Id));
+                context.Applicants.Attach(selected);
+                context.Applicants.Remove(selected);
                 await context.SaveChangesAsync();
                 data.Remove(selected);
             }
