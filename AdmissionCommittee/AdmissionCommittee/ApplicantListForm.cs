@@ -57,6 +57,7 @@ namespace AdmissionCommittee
 
         }
 
+        private async void deleteButton_Click(object _, EventArgs __)
         {
             var result = MessageBox.Show("Точно удалить?", "Удаление", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
             if (result == DialogResult.OK)
@@ -68,6 +69,7 @@ namespace AdmissionCommittee
             }
         }
 
+        private async void editButton_Click(object _, EventArgs __)
         {
             var editForm = new EditForm(selected);
             var result = editForm.ShowDialog();
@@ -90,6 +92,8 @@ namespace AdmissionCommittee
             }
         }
 
+
+        private async void AddButton_Click(object _, EventArgs __)
         {
             var editForm = new EditForm();
             var result = editForm.ShowDialog();
