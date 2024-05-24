@@ -21,6 +21,7 @@ namespace AdmissionCommittee
             ApplicationConfiguration.Initialize();
             Application.Run(new ApplicantListForm());
             Log.Information("Программу закрыли");
+            Log.CloseAndFlush();
         }
 
         /// <summary>Возвращает <see cref="DisplayAttribute.Name"/> у члена <paramref name="memberName"/> типа <paramref name="type"/></summary>
