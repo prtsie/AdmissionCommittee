@@ -2,6 +2,7 @@ using System.Linq.Expressions;
 using System.Reflection;
 using System.ComponentModel.DataAnnotations;
 using AdmissionCommittee.Models;
+using Serilog;
 
 namespace AdmissionCommittee
 {
@@ -15,8 +16,11 @@ namespace AdmissionCommittee
         {
             // To customize application configuration such as set high DPI settings or default font,
             // see https://aka.ms/applicationconfiguration.
+            Log.Logger = new LoggerConfiguration().WriteTo.Seq("http://localhost:5341/").WriteTo.File("log.txt").CreateLogger();
+            Log.Information("Программу открыли");
             ApplicationConfiguration.Initialize();
             Application.Run(new ApplicantListForm());
+            Log.Information("Программу закрыли");
         }
 
         /// <summary>Возвращает <see cref="DisplayAttribute.Name"/> у члена <paramref name="memberName"/> типа <paramref name="type"/></summary>
