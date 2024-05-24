@@ -2,6 +2,7 @@ using System.ComponentModel;
 using System.Data.Entity;
 using System.Data.Entity.Migrations;
 using AdmissionCommittee.DB;
+using AdmissionCommittee.Forms;
 using AdmissionCommittee.Helpers;
 using AdmissionCommittee.Models;
 using AdmissionCommittee.Properties;
@@ -22,14 +23,7 @@ namespace AdmissionCommittee
         {
             InitializeComponent();
             dataGridView.AutoGenerateColumns = false;
-            using var context = new CommitteeContext();
-            if (!context.Applicants.AsNoTracking().Any())
-            {
-                context.Applicants.AddRange(DataGenerator.GenerateApplicants(10));
-                context.SaveChanges();
-            }
-            data = new(context.Applicants.AsNoTracking().ToList());
-            CalculateScores();
+            data = new();
             data.ListChanged += (o, args) => CalculateScores();
             bindingSource.DataSource = data;
             dataGridView.DataSource = bindingSource;
@@ -75,6 +69,8 @@ namespace AdmissionCommittee
             var result = editForm.ShowDialog();
             if (result == DialogResult.OK)
             {
+                using var context = new CommitteeContext();
+                context.Entry(context.Applicants.Attach(selected)).CurrentValues.SetValues(editForm.Applicant);
                 selected.Name = editForm.Applicant.Name;
                 selected.Surname = editForm.Applicant.Surname;
                 selected.Patronymic = editForm.Applicant.Patronymic;
@@ -86,8 +82,6 @@ namespace AdmissionCommittee
                 selected.ITScore = editForm.Applicant.ITScore;
                 bindingSource.ResetBindings(false);
                 CalculateScores();
-                using var context = new CommitteeContext();
-                context.Applicants.AddOrUpdate(editForm.Applicant);
                 await context.SaveChangesAsync();
             }
         }
@@ -140,7 +134,7 @@ namespace AdmissionCommittee
             e.FormattingApplied = true;
         }
 
-        private void dataGridView_CellPainting(object sender, DataGridViewCellPaintingEventArgs e)
+        private void dataGridView_CellPainting(object _, DataGridViewCellPaintingEventArgs e)
         {
             if (e.ColumnIndex < 0 || e.RowIndex < 0)
             {
@@ -158,6 +152,28 @@ namespace AdmissionCommittee
                 var pos = new PointF(e.CellBounds.X + offset, e.CellBounds.Y + e.CellBounds.Height / 2 - valueSize.Height / 2);
                 e.Graphics.DrawString(value, dataGridView.Font, brush, pos);
                 e.Handled = true;
+            }
+        }
+
+        private void ApplicantListForm_Load(object _, EventArgs __)
+        {
+            using var context = new CommitteeContext();
+            foreach (var applicant in context.Applicants.AsNoTracking())
+            {
+                data.Add(applicant);
+            }
+        }
+
+        private void generateButton_Click(object _, EventArgs __)
+        {
+            var request = new GenerateCountRequest();
+            if (request.ShowDialog() == DialogResult.OK)
+            {
+                var generated = DataGenerator.GenerateApplicants((int)request.generateCount.Value);
+                foreach (var applicant in generated)
+                {
+                    data.Add(applicant);
+                }
             }
         }
     }

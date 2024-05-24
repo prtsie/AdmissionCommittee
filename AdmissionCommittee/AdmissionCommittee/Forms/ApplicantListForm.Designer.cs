@@ -36,6 +36,7 @@
             addButton = new ToolStripButton();
             editButton = new ToolStripButton();
             deleteButton = new ToolStripButton();
+            generateButton = new ToolStripButton();
             dataGridView = new DataGridView();
             id = new DataGridViewTextBoxColumn();
             name = new DataGridViewTextBoxColumn();
@@ -74,7 +75,7 @@
             // 
             // toolStrip
             // 
-            toolStrip.Items.AddRange(new ToolStripItem[] { addButton, editButton, deleteButton });
+            toolStrip.Items.AddRange(new ToolStripItem[] { addButton, editButton, deleteButton, generateButton });
             toolStrip.Location = new Point(0, 0);
             toolStrip.Name = "toolStrip";
             toolStrip.Size = new Size(800, 25);
@@ -110,6 +111,16 @@
             deleteButton.Size = new Size(55, 22);
             deleteButton.Text = "Удалить";
             deleteButton.Click += deleteButton_Click;
+            // 
+            // generateButton
+            // 
+            generateButton.DisplayStyle = ToolStripItemDisplayStyle.Text;
+            generateButton.Image = (Image)resources.GetObject("generateButton.Image");
+            generateButton.ImageTransparentColor = Color.Magenta;
+            generateButton.Name = "generateButton";
+            generateButton.Size = new Size(94, 22);
+            generateButton.Text = "Сгенерировать";
+            generateButton.Click += generateButton_Click;
             // 
             // dataGridView
             // 
@@ -205,7 +216,9 @@
             Controls.Add(statusStrip);
             DoubleBuffered = true;
             Name = "ApplicantListForm";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "Абитуриенты";
+            Load += ApplicantListForm_Load;
             statusStrip.ResumeLayout(false);
             statusStrip.PerformLayout();
             toolStrip.ResumeLayout(false);
@@ -234,5 +247,6 @@
         private DataGridViewTextBoxColumn russianScore;
         private DataGridViewTextBoxColumn ITScore;
         private DataGridViewTextBoxColumn totalScore;
+        private ToolStripButton generateButton;
     }
 }
