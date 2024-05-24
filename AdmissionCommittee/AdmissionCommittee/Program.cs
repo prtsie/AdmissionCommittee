@@ -17,14 +17,14 @@ namespace AdmissionCommittee
             // To customize application configuration such as set high DPI settings or default font,
             // see https://aka.ms/applicationconfiguration.
             Log.Logger = new LoggerConfiguration().WriteTo.Seq("http://localhost:5341/").WriteTo.File("log.txt").CreateLogger();
-            Log.Information("Программу открыли");
+            Log.Information("РџСЂРѕРіСЂР°РјРјСѓ РѕС‚РєСЂС‹Р»Рё");
             ApplicationConfiguration.Initialize();
             Application.Run(new ApplicantListForm());
-            Log.Information("Программу закрыли");
+            Log.Information("РџСЂРѕРіСЂР°РјРјСѓ Р·Р°РєСЂС‹Р»Рё");
             Log.CloseAndFlush();
         }
 
-        /// <summary>Возвращает <see cref="DisplayAttribute.Name"/> у члена <paramref name="memberName"/> типа <paramref name="type"/></summary>
+        /// <summary>Г‚Г®Г§ГўГ°Г Г№Г ГҐГІ <see cref="DisplayAttribute.Name"/> Гі Г·Г«ГҐГ­Г  <paramref name="memberName"/> ГІГЁГЇГ  <paramref name="type"/></summary>
         /// <exception cref="NullReferenceException"></exception>
         /// <exception cref="InvalidOperationException"></exception>
         public static string GetMemberDisplayName(Type type, string memberName)
@@ -38,7 +38,7 @@ namespace AdmissionCommittee
                     return attribute.Name;
                 }
             }
-            throw new InvalidOperationException(!attributes.Any() ? "У значения нет атрибута Display" : "У атрибута Display не задано свойство Name");
+            throw new InvalidOperationException(!attributes.Any() ? "РЈ Р·РЅР°С‡РµРЅРёСЏ РЅРµС‚ Р°С‚СЂРёР±СѓС‚Р° Display" : "РЈ Р°С‚СЂРёР±СѓС‚Р° Display РЅРµ Р·Р°РґР°РЅРѕ СЃРІРѕР№СЃС‚РІРѕ Name");
         }
     }
 }
