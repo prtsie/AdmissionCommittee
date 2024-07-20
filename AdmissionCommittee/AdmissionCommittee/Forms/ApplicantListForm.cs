@@ -6,6 +6,7 @@ using AdmissionCommittee.Forms;
 using AdmissionCommittee.Helpers;
 using AdmissionCommittee.Models;
 using AdmissionCommittee.Properties;
+using Serilog;
 
 namespace AdmissionCommittee
 {
@@ -59,6 +60,7 @@ namespace AdmissionCommittee
                 using var context = new CommitteeContext();
                 context.Applicants.Remove(context.Applicants.Attach(selected));
                 await context.SaveChangesAsync();
+                Log.Information("Удалена запись id: {Id}", selected.Id);
                 data.Remove(selected);
             }
         }
@@ -83,6 +85,7 @@ namespace AdmissionCommittee
                 bindingSource.ResetBindings(false);
                 CalculateScores();
                 await context.SaveChangesAsync();
+                Log.Information("Изменена запись id: {Id}", selected.Id);
             }
         }
 
@@ -98,6 +101,7 @@ namespace AdmissionCommittee
                 using var context = new CommitteeContext();
                 context.Applicants.Add(editForm.Applicant);
                 await context.SaveChangesAsync();
+                Log.Information("Добавлена запись id: {Id}", editForm.Applicant.Id);
             }
         }
 
@@ -164,16 +168,20 @@ namespace AdmissionCommittee
             }
         }
 
-        private void generateButton_Click(object _, EventArgs __)
+        private async void generateButton_Click(object _, EventArgs __)
         {
             var request = new GenerateCountRequest();
             if (request.ShowDialog() == DialogResult.OK)
             {
                 var generated = DataGenerator.GenerateApplicants((int)request.generateCount.Value);
+                using var context = new CommitteeContext();
                 foreach (var applicant in generated)
                 {
                     data.Add(applicant);
+                    context.Applicants.Add(applicant);
+                    Log.Information("Добавлена запись id: {Id}", applicant.Id);
                 }
+                await context.SaveChangesAsync();
             }
         }
     }
